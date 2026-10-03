@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0a1230"/><stop offset="1" stop-color="#26114a"/></linearGradient>
+    <linearGradient id="floor" x2="0" y2="1"><stop stop-color="#f256c4" stop-opacity="0"/><stop offset="1" stop-color="#f256c4" stop-opacity=".22"/></linearGradient>
+    <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".9" fill="#5ce5ee" fill-opacity=".28"/></pattern>
+    <filter id="glow" x="-10%" y="-40%" width="120%" height="180%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+
+  <rect width="300" height="100" fill="url(#bg)"/><rect width="300" height="100" fill="url(#dots)"/>
+  <rect y="60" width="300" height="40" fill="url(#floor)"/>
+  <g filter="url(#glow)">
+    <g fill="none" stroke="#4ee6e6" stroke-width="2" stroke-linejoin="round"><path d="M-2 20h62l14 14h38M302 20h-62l-14 14h-38M-2 80h72l12-12h32M302 80h-72l-12-12h-32"/></g>
+    <g fill="none" stroke="#ff5fc8" stroke-width="1.6"><path d="M112 34h76M114 68h72"/></g>
+    <g fill="#ff8ad8"><circle cx="112" cy="34" r="2.6"/><circle cx="188" cy="34" r="2.6"/><circle cx="114" cy="68" r="2.6"/><circle cx="186" cy="68" r="2.6"/></g>
+  </g>
+  <g fill="#4ee6e6" opacity=".7"><rect x="18" y="44" width="16" height="2"/><rect x="18" y="50" width="10" height="2"/><rect x="266" y="50" width="16" height="2"/><rect x="272" y="56" width="10" height="2"/></g>
+</svg>

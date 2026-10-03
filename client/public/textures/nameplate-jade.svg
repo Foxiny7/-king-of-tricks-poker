@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="bg" cx=".45" cy=".35" r=".95"><stop stop-color="#4fae84"/><stop offset=".55" stop-color="#23704f"/><stop offset="1" stop-color="#0f3d2b"/></radialGradient>
+    <filter id="stone" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".018 .05" numOctaves="4" seed="11"/><feColorMatrix values="0 0 0 0 .86  0 0 0 0 .97  0 0 0 0 .9  0 0 0 1.6 -.72"/></filter>
+    <filter id="fleck" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".09" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 .03  0 0 0 0 .2  0 0 0 0 .12  0 0 0 2.4 -1.35"/></filter>
+    <linearGradient id="bevel" x2="0" y2="1"><stop stop-color="#e3fbe9" stop-opacity=".55"/><stop offset="1" stop-color="#e3fbe9" stop-opacity=".08"/></linearGradient>
+    <g id="curl"><path d="M0 0c0-9 12-11 14-3 1 5-5 7-7 3M14-3c6 0 10 4 16 2" fill="none" stroke="#dff7e6" stroke-width="2" stroke-linecap="round"/></g></defs>
+
+  <rect width="300" height="100" fill="url(#bg)"/>
+  <rect width="300" height="100" filter="url(#stone)" opacity=".55"/>
+  <rect width="300" height="100" filter="url(#fleck)" opacity=".7"/>
+  <rect x="5" y="5" width="290" height="90" rx="8" fill="none" stroke="url(#bevel)" stroke-width="2"/>
+  <rect x="7.5" y="7.5" width="285" height="85" rx="6" fill="none" stroke="#0a2f20" stroke-opacity=".55" stroke-width="1.2"/>
+  <g opacity=".55"><use href="#curl" x="18" y="24"/><use href="#curl" transform="translate(282 24) scale(-1 1)"/><use href="#curl" transform="translate(18 80) scale(1 -1)"/><use href="#curl" transform="translate(282 80) scale(-1 -1)"/></g>
+  <ellipse cx="150" cy="20" rx="120" ry="14" fill="#fff" opacity=".07"/>
+</svg>

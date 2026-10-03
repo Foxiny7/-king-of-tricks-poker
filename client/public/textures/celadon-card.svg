@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 250">
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".4" r=".8"><stop stop-color="#8fb9a3"/><stop offset="1" stop-color="#3f6f5d"/></radialGradient>
+    <linearGradient id="vase" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7fae9a"/><stop offset=".35" stop-color="#d9ecdf"/><stop offset=".6" stop-color="#b2d2bf"/><stop offset="1" stop-color="#6e9d88"/></linearGradient>
+    <clipPath id="inner"><rect x="9" y="9" width="162" height="232" rx="9"/></clipPath>
+    <clipPath id="vaseClip"><path id="vasePath" d="M78 60h24v8c0 4 3 6 8 10 12 10 18 26 18 46 0 28-10 50-22 66v10H74v-10c-12-16-22-38-22-66 0-20 6-36 18-46 5-4 8-6 8-10z"/></clipPath>
+  </defs>
+  <rect width="180" height="250" rx="15" fill="url(#bg)"/>
+  <g clip-path="url(#inner)" fill="none" stroke="#3f6b5a" stroke-opacity=".28" stroke-width="1">
+    <path d="M9 40l30 12 18-20 28 14 24-26 30 18 32-8M9 96l22-10 26 16 20-14M130 70l22 18 19-6M9 150l26 6 12 24-20 22M150 150l-18 16 10 26 29 6M9 214l40 6 22 21M118 241l12-24 41-4M52 32l6 34M140 20l-10 40"/>
+  </g>
+  <g clip-path="url(#inner)">
+    <ellipse cx="90" cy="204" rx="44" ry="8" fill="#4f7a69" opacity=".35"/>
+  </g>
+  <use href="#vasePath" fill="url(#vase)"/>
+  <g clip-path="url(#vaseClip)">
+    <g fill="none" stroke="#5f8f7b" stroke-width="1.8" stroke-linecap="round" stroke-opacity=".75">
+      <path d="M90 150c-6-10-6-22 0-32 6 10 6 22 0 32z"/>
+      <path d="M90 150c-12-4-20-14-22-26 12 2 20 12 22 26z"/><path d="M90 150c12-4 20-14 22-26-12 2-20 12-22 26z"/>
+      <path d="M90 150c-16 2-28-4-34-14 12-2 24 4 34 14z"/><path d="M90 150c16 2 28-4 34-14-12-2-24 4-34 14z"/>
+      <path d="M58 100h64M54 176h72"/>
+    </g>
+    <path d="M70 92c-4 16-4 44 4 70" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="4" stroke-linecap="round"/>
+    <g fill="none" stroke="#3f6b5a" stroke-opacity=".25" stroke-width=".9"><path d="M60 120l14 6 8 16 18-4 10 12M66 170l12-8 16 6 14-10"/></g>
+  </g>
+  <use href="#vasePath" fill="none" stroke="#4f7a69" stroke-width="2"/>
+  <rect x="9" y="9" width="162" height="232" rx="9" fill="none" stroke="#3f6b5a" stroke-width="3.5"/>
+  <rect x="17" y="17" width="146" height="216" rx="6" fill="none" stroke="#f1f8f1" stroke-opacity=".55" stroke-width="1.2"/>
+</svg>

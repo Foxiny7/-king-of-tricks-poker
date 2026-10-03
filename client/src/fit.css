@@ -1,0 +1,284 @@
+/* Full-screen shell, loaded last. Every screen is exactly one window tall and never scrolls as a
+   page: #root is zoomed to fit (see ThemeContext), each screen fills what is left under the voice
+   bar, and only lists that can outgrow their panel scroll inside it. */
+html,
+body { height: 100%; overflow: hidden; overscroll-behavior: none; }
+/* iPhone enlarges long text in landscape, and WeChat on iOS scales page text with its own font
+   setting; either would push text out of the fixed-size panels. Android WeChat: wechatDetect.js. */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.landscape-gate { display: none; }
+@media (orientation: portrait) {
+  .landscape-gate {
+    position: fixed;
+    z-index: 2147483647;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px;
+    color: #fff;
+    background: #18171f;
+    text-align: center;
+    font: 700 18px var(--comic-sans), sans-serif;
+  }
+  .landscape-gate span { color: var(--comic-hot); font-size: 56px; line-height: 1; }
+  .landscape-gate strong { font-size: 30px; }
+  .landscape-gate p { margin: 0; font-size: 15px; font-weight: 400; }
+  dialog[open] { visibility: hidden; }
+}
+#root {
+  height: calc(100dvh / var(--ui-scale, 1));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+:where(#root > *, .game-session > *) { flex: none; }
+.title-screen,
+.room-setup,
+.trick-selection,
+.table-view { flex: 1 1 auto; min-height: 0; }
+
+/* ---------- title ---------- */
+.title-screen { min-height: 0; height: auto; overflow: hidden; }
+
+/* ---------- voice bar ---------- */
+.voice-console, .voice-console.expanded { margin: 8px auto 0; }
+
+/* ---------- lobby ---------- */
+.room-setup {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 14px;
+  width: min(1100px, 100%);
+  max-width: none;
+  margin: 0 auto;
+  padding: 14px 22px 18px;
+  overflow: hidden;
+}
+.room-code-banner { min-height: 0; margin: 0; padding: 12px 22px; }
+.setup-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-areas: "rules players" "rules actions";
+  gap: 14px 18px;
+  align-items: stretch;
+  min-height: 0;
+}
+.setup-tabs { display: none; }
+.setup-rules { grid-area: rules; min-height: 0; overflow-y: auto; }
+.setup-players { grid-area: players; min-height: 0; overflow-y: auto; }
+.setup-actions { grid-area: actions; align-content: end; }
+.setup-players .room-history { margin-top: 18px; }
+
+/* ---------- trick draft ---------- */
+.trick-selection { min-height: 0; overflow-y: auto; padding-top: 12px; padding-bottom: 16px; }
+
+/* ---------- table: the felt takes whatever height the chrome leaves ---------- */
+.table-view { min-height: 0; height: auto; padding: 8px 0 10px; overflow: hidden; }
+.table-header { flex: none; }
+.table-felt,
+.table-felt:not(.crowded),
+.table-felt.crowded,
+.table-felt.crowded.showdown { flex: 1 1 0; min-height: 0; margin: 12px 0 16px; }
+/* The settlement keeps at most a third of the height so revealed hands stay readable on the felt;
+   its continue button is pinned to the panel's bottom edge. */
+.showdown-banner { flex: none; max-height: 34%; overflow-y: auto; padding-bottom: 0; }
+.showdown-banner .continue-gate { position: sticky; bottom: 0; flex-direction: row; justify-content: center; gap: 16px; margin: 6px -20px 0; padding: 10px 20px 12px; background: var(--comic-surface); border-top: 2px solid var(--comic-rule); }
+.showdown-banner .continue-gate .primary { min-height: 42px; padding: 0 26px; }
+.action-bar { flex: none; position: relative; bottom: auto; max-height: none; overflow: visible; }
+.table-tools { gap: 2px; }
+.table-tools button { display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
+.table-tools button svg { flex: none; }
+.table-icon-btn { display: grid; place-items: center; min-width: 34px; font-size: 16px; }
+.table-tools .leave-room-btn { width: auto; min-width: 0; min-height: 32px; margin-left: 6px; padding: 0 14px; font-size: 12px; box-shadow: 3px 3px 0 #000; }
+
+/* ---------- dialogs live outside #root, so they take the same zoom here ---------- */
+.game-window, .trick-panel, .gesture-dialog { zoom: var(--ui-scale, 1); }
+.game-window { width: min(1060px, calc(100vw / var(--ui-scale, 1) - 32px)); height: min(660px, calc(100dvh / var(--ui-scale, 1) - 48px)); }
+.trick-catalog-panel { width: min(1080px, calc(100vw / var(--ui-scale, 1) - 22px)); }
+.trick-panel { width: min(780px, calc(100vw / var(--ui-scale, 1) - 22px)); max-height: min(850px, calc(90dvh / var(--ui-scale, 1))); }
+.trick-panel-body { max-height: min(850px, calc(90dvh / var(--ui-scale, 1))); }
+.gesture-dialog { width: min(360px, calc(100vw / var(--ui-scale, 1) - 24px)); max-width: none; max-height: calc(100dvh / var(--ui-scale, 1) - 24px); }
+
+/* ---------- portrait phones ---------- */
+@media (orientation: portrait) and (max-width: 720px) {
+  .voice-console, .voice-console.expanded { width: calc(100% - 24px); }
+  .room-setup { gap: 10px; padding: 10px 12px 12px; }
+  .room-code-banner { padding: 10px 14px; }
+  .room-code { font-size: 36px; }
+  .setup-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-areas: "tabs" "pane" "actions";
+    gap: 10px;
+  }
+  .setup-tabs { grid-area: tabs; display: flex; gap: 8px; }
+  .setup-tabs button { flex: 1; min-height: 42px; border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); color: #fff; font-weight: 900; letter-spacing: .08em; transform: skewX(-10deg); }
+  .setup-tabs button.active { color: var(--comic-ink); background: #fff; box-shadow: 4px 4px 0 var(--comic-hot); }
+  .setup-rules, .setup-players { grid-area: pane; padding: 16px 14px; }
+  .show-players .setup-rules, .show-rules .setup-players { display: none; }
+  .setup-actions { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .setup-actions .primary, .setup-actions .leave-room-btn { min-height: 46px; }
+  .setup-actions .waiting-note { margin: 0; align-self: center; text-align: center; }
+
+  .table-view { padding-top: 6px; }
+  .table-felt, .table-felt:not(.crowded), .table-felt.crowded, .table-felt.crowded.showdown { margin: 10px 0 12px; }
+  /* Seven or more seats share a phone-sized felt, so each seat is drawn a little smaller. */
+  .table-felt.crowded .seat { transform: translate(-50%, -50%) scale(.84); }
+  .table-tools .leave-room-btn { padding: 0 10px; }
+
+  .raise-controls { gap: 6px; padding-top: 8px; }
+  .raise-presets button { min-height: 36px; }
+  .chip-btn { min-height: 32px; padding: 4px 6px; }
+  .raise-controls > .primary { min-height: 40px; }
+  .showdown-banner { padding: 12px 14px 0; }
+  .showdown-banner .continue-gate { margin: 6px -14px 0; padding: 8px 14px 10px; }
+  .settlement-row { padding: 8px 0; }
+  .settlement-cards .card { width: 28px; height: 39px; }
+  .trick-offer-slot .trick-offer-card { min-height: 0; padding: 12px 14px; gap: 5px; }
+  .trick-offer-card strong { font-size: 18px; }
+  .trick-card-description { font-size: 12px; line-height: 1.45; }
+  .trick-card-details { font-size: 11px; gap: 3px; }
+  .trick-card-select { padding-top: 6px; }
+  .trick-offer-refresh { min-height: 34px; }
+  .trick-offer-grid { gap: 10px; }
+  .trick-selection-main { padding: 14px; }
+  .trick-selection-heading { margin-bottom: 12px; }
+  .trick-phase-track { margin: 10px auto 14px; }   /* keep auto sides: the track is centred like its siblings */
+}
+@media (orientation: portrait) {
+  .game-window { width: calc(100vw / var(--ui-scale, 1)); height: calc(100dvh / var(--ui-scale, 1)); }
+}
+
+/* Landscape: keep the felt full-width and float the small action dock over its lower right. */
+@media (orientation: landscape) {
+  .table-view > .table-felt { width: calc(100% - 32px); max-width: none; }
+  .table-view > .showdown-banner,
+  .table-view > .table-wait,
+  .table-view > .action-bar {
+    position: absolute;
+    z-index: 12;
+    right: auto;
+    bottom: 16px;
+    left: calc(50% + 9px); /* beside the hand, see pov.css */
+    width: var(--dock-width);
+    max-height: calc(100% - 90px);
+    margin: 0;
+    overflow-y: auto;
+  }
+  .table-view > .showdown-banner { width: var(--dock-width); }
+  .table-view > .table-wait,
+  .table-view > .action-bar { align-self: auto; }
+  .table-view .settlement-row { flex-wrap: wrap; }
+  .table-view > .action-bar .action-buttons { display: grid; grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- whose turn it is, shown in the action dock between your turns ---------- */
+.table-wait { display: grid; align-content: center; gap: 12px; padding: 14px 18px; border: 3px solid #fff; background: var(--comic-surface); box-shadow: 8px 8px 0 #000; }
+.table-wait-heading { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.table-wait-heading strong { overflow: hidden; color: #fff; font-size: 17px; font-weight: 900; letter-spacing: .04em; text-overflow: ellipsis; white-space: nowrap; }
+.table-wait .timer-fill { background: var(--comic-grey, #bdbdbd); }
+
+/* Portrait phones: tighter chrome above the felt so the table gets the height back. */
+@media (orientation: portrait) and (max-width: 720px) {
+  .voice-console, .voice-console.expanded { margin-top: 6px; }
+  .voice-dock { padding: 3px 4px; }
+  .voice-emblem, .voice-console .voice-icon-btn { width: 30px; height: 30px; }
+  .table-view { padding-top: 6px; }
+  .table-header { min-height: 0; padding: 6px 10px; gap: 6px; }
+  .table-tools { min-height: 30px; padding: 2px 4px; }
+  .table-tools button { min-height: 26px; padding: 3px 7px; }
+  .table-felt, .table-felt:not(.crowded), .table-felt.crowded, .table-felt.crowded.showdown { margin-top: 8px; }
+  .table-view > .action-bar { gap: 6px; padding: 10px 12px; }
+  .table-view > .action-bar .timer-row { gap: 8px; }
+  .table-view > .action-bar .action-buttons > button { min-height: 42px; }
+  .table-wait { padding: 12px 14px; }
+}
+
+/* ---------- voice: one toolbar button, panel pops out beside it ---------- */
+.voice-slot { display: contents; }
+.table-voice-btn { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.table-voice-btn svg { width: 16px; height: 16px; flex: none; }
+.table-voice-btn small { min-width: 16px; padding: 0 4px; color: var(--comic-ink); background: #fff; font: 400 11px/16px var(--comic-numbers); text-align: center; }
+.table-voice-btn.active { box-shadow: inset 0 -3px 0 var(--comic-hot); }
+.room-code-tools { display: flex; align-items: center; gap: 8px; }
+.room-code-tools .table-voice-btn {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 2px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  background: var(--comic-surface);
+  font-weight: 700;
+  transform: skewX(-8deg);
+  box-shadow: 4px 4px 0 #000;
+}
+.room-code-tools .table-voice-btn:hover:not(:disabled) { color: var(--comic-ink); background: #fff; }
+.voice-console.voice-popover {
+  position: fixed;
+  z-index: 60;
+  width: 320px;
+  max-width: calc(100vw / var(--ui-scale, 1) - 16px);
+  max-height: calc(100dvh / var(--ui-scale, 1) - 80px);
+  margin: 0;
+  overflow-y: auto;
+  transform: scale(var(--ui-scale, 1));
+  transform-origin: top left;
+  box-shadow: 7px 7px 0 var(--comic-hot);
+}
+.voice-popover-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-bottom: 2px solid var(--comic-rule); }
+.voice-popover-head strong { font-size: 15px; font-weight: 900; letter-spacing: .06em; }
+.voice-popover .voice-panel { border-top: 0; }
+
+/* ---------- phones, portrait: the settlement fits the fixed dock beside its continue button ---------- */
+@media (orientation: portrait) and (max-width: 720px) {
+  .table-view > .showdown-banner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-content: start;
+    column-gap: 10px;
+    padding: 8px 12px;
+  }
+  .table-view > .showdown-banner > * { grid-column: 1; }
+  .table-view > .showdown-banner > .showdown-head h2 { margin: 0; padding: 2px 10px 3px 8px; font-size: 13px; box-shadow: 3px 3px 0 var(--comic-hot); }
+  .table-view > .showdown-banner > .showdown-head { margin-bottom: 4px; }
+  .table-view > .showdown-banner .settlement-row { flex-wrap: wrap; gap: 2px 10px; padding: 2px 0; border-bottom: 0; }
+  .table-view > .showdown-banner .settlement-row small { margin-top: 1px; }
+  .table-view > .showdown-banner .settlement-cards { margin-top: 3px; }
+  .table-view > .showdown-banner .settlement-amount { display: flex; align-items: baseline; gap: 8px; font-size: 15px; }
+  .table-view > .showdown-banner .settlement-amount small { display: inline; margin: 0; }
+  .table-view > .showdown-banner > .waiting-note { margin: 2px 0 0; font-size: 11px; }
+  .table-view > .showdown-banner > .continue-gate {
+    grid-column: 2;
+    grid-row: 1 / span 20;
+    align-self: center;
+    position: static;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+  }
+  .table-view > .showdown-banner > .continue-gate .primary { min-height: 44px; padding: 0 14px; font-size: 14px; }
+  .table-view > .showdown-banner > .continue-gate .waiting-note { margin: 0; font-size: 11px; }
+}
+
+/* ---------- test bots ---------- */
+.section-heading-tools { display: flex; align-items: center; gap: 8px; }
+.setup-players .add-bot-btn {
+  min-height: 30px;
+  padding: 0 12px;
+  border: 2px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  background: var(--comic-surface);
+  font-size: 12px;
+  font-weight: 900;
+  transform: skewX(-8deg);
+  box-shadow: 3px 3px 0 #000;
+}
+.setup-players .add-bot-btn:hover:not(:disabled) { color: var(--comic-ink); background: #fff; }

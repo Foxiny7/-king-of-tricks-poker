@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#2a1631"/><stop offset=".45" stop-color="#8a3a34"/><stop offset=".8" stop-color="#e3894a"/><stop offset="1" stop-color="#f3c07a"/></linearGradient>
+    <radialGradient id="sun"><stop stop-color="#fff0c0"/><stop offset=".5" stop-color="#ffc977" stop-opacity=".8"/><stop offset="1" stop-color="#ffc977" stop-opacity="0"/></radialGradient>
+    <linearGradient id="stone" x2="0" y2="1"><stop stop-color="#7a4a36"/><stop offset="1" stop-color="#3a2219"/></linearGradient>
+    <linearGradient id="drape" x1="0" x2="1"><stop stop-color="#5e0f16"/><stop offset=".5" stop-color="#a3222a"/><stop offset="1" stop-color="#5e0f16"/></linearGradient>
+    <g id="arch"><path d="M0 0h40v-40a20 20 0 0 0-40 0z"/></g>
+  </defs>
+  <rect width="1200" height="640" fill="url(#sky)"/>
+  <circle cx="600" cy="300" r="170" fill="url(#sun)" opacity=".7"/>
+  <path d="M170 360V220c140-40 280-56 430-56s290 16 430 56v140z" fill="url(#stone)"/>
+  <g fill="#2a140f">
+    <use href="#arch" x="210" y="270"/><use href="#arch" x="270" y="262"/><use href="#arch" x="330" y="256"/><use href="#arch" x="390" y="252"/><use href="#arch" x="450" y="250"/><use href="#arch" x="510" y="248"/><use href="#arch" x="570" y="248"/><use href="#arch" x="630" y="248"/><use href="#arch" x="690" y="250"/><use href="#arch" x="750" y="252"/><use href="#arch" x="810" y="256"/><use href="#arch" x="870" y="262"/><use href="#arch" x="930" y="270"/>
+    <use href="#arch" x="220" y="340"/><use href="#arch" x="280" y="334"/><use href="#arch" x="340" y="330"/><use href="#arch" x="400" y="326"/><use href="#arch" x="460" y="324"/><use href="#arch" x="520" y="324"/><use href="#arch" x="580" y="324"/><use href="#arch" x="640" y="324"/><use href="#arch" x="700" y="324"/><use href="#arch" x="760" y="326"/><use href="#arch" x="820" y="330"/><use href="#arch" x="880" y="334"/><use href="#arch" x="940" y="340"/>
+  </g>
+  <path d="M170 290c140-34 280-48 430-48s290 14 430 48M170 220c140-40 280-56 430-56s290 16 430 56" fill="none" stroke="#c98a5e" stroke-opacity=".6" stroke-width="3"/>
+  <path d="M0 360h1200v280H0z" fill="#3a2016"/>
+  <path d="M0 360h1200" stroke="#d99a66" stroke-opacity=".5" stroke-width="3"/>
+  <g fill="#5a3526" stroke="#2a140f" stroke-width="2">
+    <rect x="40" y="150" width="44" height="490"/><rect x="1116" y="150" width="44" height="490"/>
+    <rect x="30" y="136" width="64" height="18"/><rect x="1106" y="136" width="64" height="18"/>
+  </g>
+  <g stroke="#2a140f" stroke-opacity=".5" stroke-width="3"><path d="M52 160v470M62 160v470M72 160v470M1128 160v470M1138 160v470M1148 160v470"/></g>
+  <path d="M0 0h260c-20 70-60 110-120 130-50-10-100-50-140-90z" fill="url(#drape)"/>
+  <path d="M1200 0H940c20 70 60 110 120 130 50-10 100-50 140-90z" fill="url(#drape)"/>
+  <path d="M0 40c40 40 90 80 140 90M1200 40c-40 40-90 80-140 90" fill="none" stroke="#e0a14a" stroke-width="4"/>
+  <g fill="none" stroke="#7a2d23" stroke-opacity=".5" stroke-width="2"><path d="M60 470h280M120 520h340M740 480h320M680 560h380"/></g>
+</svg>

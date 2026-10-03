@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="mist" x2="0" y2="1"><stop stop-color="#1c3a30"/><stop offset=".45" stop-color="#3f6b52"/><stop offset=".8" stop-color="#5c8a68"/><stop offset="1" stop-color="#2a4c3b"/></linearGradient>
+    <radialGradient id="moon"><stop stop-color="#fbf6dd"/><stop offset=".6" stop-color="#f1ebc6"/><stop offset="1" stop-color="#f1ebc6" stop-opacity="0"/></radialGradient>
+    <linearGradient id="near" x1="0" x2="1"><stop stop-color="#17402a"/><stop offset=".45" stop-color="#3f7d4c"/><stop offset="1" stop-color="#153a26"/></linearGradient>
+    <linearGradient id="far" x1="0" x2="1"><stop stop-color="#557f64"/><stop offset=".5" stop-color="#7aa283"/><stop offset="1" stop-color="#557f64"/></linearGradient>
+    <linearGradient id="fog" x2="0" y2="1"><stop stop-color="#d9ead0" stop-opacity="0"/><stop offset=".5" stop-color="#d9ead0" stop-opacity=".22"/><stop offset="1" stop-color="#d9ead0" stop-opacity="0"/></linearGradient>
+    <path id="leaf" d="M0 0c22-8 50-8 70 0-20 10-48 10-70 0z"/>
+  </defs>
+  <rect width="1200" height="640" fill="url(#mist)"/>
+  <circle cx="640" cy="110" r="120" fill="url(#moon)" opacity=".5"/><circle cx="640" cy="110" r="48" fill="#f7f1d6"/>
+  <g fill="url(#far)" opacity=".7">
+    <rect x="300" y="0" width="12" height="640" rx="5"/><rect x="360" y="0" width="10" height="640" rx="5"/><rect x="820" y="0" width="12" height="640" rx="5"/><rect x="890" y="0" width="10" height="640" rx="5"/><rect x="470" y="0" width="9" height="640" rx="4"/><rect x="740" y="0" width="9" height="640" rx="4"/>
+  </g>
+  <g fill="#44705a" opacity=".7"><rect x="298" y="160" width="16" height="3"/><rect x="298" y="330" width="16" height="3"/><rect x="358" y="240" width="14" height="3"/><rect x="818" y="200" width="16" height="3"/><rect x="888" y="300" width="14" height="3"/><rect x="468" y="120" width="13" height="3"/><rect x="738" y="260" width="13" height="3"/></g>
+  <rect y="250" width="1200" height="180" fill="url(#fog)"/>
+  <g fill="url(#near)">
+    <rect x="40" y="0" width="30" height="640" rx="13"/><rect x="118" y="0" width="24" height="640" rx="11"/><rect x="196" y="0" width="20" height="640" rx="9"/>
+    <rect x="1000" y="0" width="22" height="640" rx="10"/><rect x="1068" y="0" width="30" height="640" rx="13"/><rect x="1146" y="0" width="24" height="640" rx="11"/>
+  </g>
+  <g fill="#0f2c1c">
+    <rect x="36" y="120" width="38" height="6" rx="3"/><rect x="36" y="300" width="38" height="6" rx="3"/><rect x="36" y="480" width="38" height="6" rx="3"/>
+    <rect x="114" y="200" width="32" height="6" rx="3"/><rect x="114" y="390" width="32" height="6" rx="3"/><rect x="192" y="90" width="28" height="6" rx="3"/><rect x="192" y="330" width="28" height="6" rx="3"/>
+    <rect x="996" y="160" width="30" height="6" rx="3"/><rect x="996" y="420" width="30" height="6" rx="3"/><rect x="1064" y="80" width="38" height="6" rx="3"/><rect x="1064" y="280" width="38" height="6" rx="3"/><rect x="1142" y="210" width="32" height="6" rx="3"/>
+  </g>
+  <g fill="#1f4e31">
+    <use href="#leaf" transform="translate(70 124) rotate(-24)"/><use href="#leaf" transform="translate(70 128) rotate(-4) scale(.9)"/><use href="#leaf" transform="translate(70 132) rotate(16) scale(.8)"/>
+    <use href="#leaf" transform="translate(146 392) rotate(-18)"/><use href="#leaf" transform="translate(146 396) rotate(4) scale(.85)"/>
+    <use href="#leaf" transform="translate(220 92) rotate(-30) scale(.9)"/><use href="#leaf" transform="translate(220 96) rotate(-8) scale(.8)"/>
+    <use href="#leaf" transform="translate(996 164) rotate(204)"/><use href="#leaf" transform="translate(996 168) rotate(184) scale(.9)"/><use href="#leaf" transform="translate(996 172) rotate(164) scale(.8)"/>
+    <use href="#leaf" transform="translate(1064 284) rotate(200)"/><use href="#leaf" transform="translate(1064 288) rotate(180) scale(.85)"/>
+    <use href="#leaf" transform="translate(1142 214) rotate(210) scale(.9)"/>
+  </g>
+  <path d="M0 560c200-30 400-20 600 0s400 20 600-6v86H0z" fill="#1b3d2c" opacity=".8"/>
+  <path d="M0 585c180-18 380-14 600-4s420 12 600-6" fill="none" stroke="#d9ead0" stroke-opacity=".2" stroke-width="3"/>
+</svg>

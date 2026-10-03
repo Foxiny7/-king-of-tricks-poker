@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#0b0a1f"/><stop offset=".6" stop-color="#2a1d3d"/><stop offset="1" stop-color="#7a4636"/></linearGradient>
+    <linearGradient id="milky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5e6c8" stop-opacity="0"/><stop offset=".5" stop-color="#f5e6c8" stop-opacity=".46"/><stop offset="1" stop-color="#f5e6c8" stop-opacity="0"/></linearGradient>
+    <linearGradient id="duneFar" x2="0" y2="1"><stop stop-color="#8a5a3c"/><stop offset="1" stop-color="#5a3624"/></linearGradient>
+    <linearGradient id="duneLit" x1="0" x2="1"><stop stop-color="#d69b5e"/><stop offset="1" stop-color="#9c643c"/></linearGradient>
+    <linearGradient id="duneDark" x1="0" x2="1"><stop stop-color="#6a3f28"/><stop offset="1" stop-color="#3f2418"/></linearGradient>
+  </defs>
+  <rect width="1200" height="640" fill="url(#sky)"/>
+  <path d="M-40 300C200 180 420 150 640 110S1040 20 1260 -20v90C1040 110 840 180 640 210S220 300 -40 400z" fill="url(#milky)"/>
+  <g fill="#fff4dc" opacity=".8"><circle cx="120" cy="80" r="1.5"/><circle cx="260" cy="200" r="1.2"/><circle cx="380" cy="120" r="1.6"/><circle cx="520" cy="170" r="1"/><circle cx="600" cy="90" r="1.4"/><circle cx="720" cy="140" r="1.2"/><circle cx="860" cy="70" r="1.5"/><circle cx="990" cy="160" r="1.1"/><circle cx="1110" cy="110" r="1.4"/><circle cx="450" cy="230" r="1"/><circle cx="800" cy="220" r="1"/><circle cx="300" cy="150" r=".9"/><circle cx="680" cy="190" r=".9"/><circle cx="940" cy="110" r=".9"/></g>
+  <path d="M260 110a36 36 0 1 0 30 56 30 30 0 1 1-30-56z" fill="#fbe7b8"/>
+  <path d="M0 360c120-40 240-50 380-30s260 30 400 0 280-40 420-10v320H0z" fill="url(#duneFar)"/>
+  <path d="M0 420c160-70 320-80 460-40 80 22 140 60 200 90H0z" fill="url(#duneLit)"/>
+  <path d="M460 380c80 22 140 60 200 90l-140 4c-20-40-40-70-60-94z" fill="url(#duneDark)" opacity=".9"/>
+  <path d="M1200 440c-150-60-310-70-450-30-60 18-120 50-170 80h620z" fill="url(#duneLit)"/>
+  <path d="M750 410c-60 18-120 50-170 80l150 6c10-34 12-60 20-86z" fill="url(#duneDark)" opacity=".9"/>
+  <path d="M0 520c200-50 400-40 600-10s400 30 600-10v140H0z" fill="#4a2a1c"/>
+  <path d="M0 520c200-50 400-40 600-10s400 30 600-10" fill="none" stroke="#e0a468" stroke-opacity=".5" stroke-width="3"/>
+  <g fill="none" stroke="#f1c089" stroke-opacity=".28" stroke-width="2"><path d="M60 460c60-16 120-18 180-8M820 470c70-16 140-14 200-2M300 580c90-14 180-12 260 2"/></g>
+</svg>

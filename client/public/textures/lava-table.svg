@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#12070a"/><stop offset=".55" stop-color="#3d1210"/><stop offset="1" stop-color="#6e2412"/></linearGradient>
+    <radialGradient id="crater"><stop stop-color="#ffd27a" stop-opacity=".9"/><stop offset=".4" stop-color="#ff7a2a" stop-opacity=".55"/><stop offset="1" stop-color="#ff4a1a" stop-opacity="0"/></radialGradient>
+    <linearGradient id="flow" x2="0" y2="1"><stop stop-color="#ffcf6a"/><stop offset=".5" stop-color="#ff7a24"/><stop offset="1" stop-color="#c2331a"/></linearGradient>
+    <linearGradient id="rock" x2="0" y2="1"><stop stop-color="#2a1614"/><stop offset="1" stop-color="#0e0707"/></linearGradient>
+    <linearGradient id="smoke" x2="0" y2="1"><stop stop-color="#3a2a2a" stop-opacity=".0"/><stop offset="1" stop-color="#5a3a34" stop-opacity=".55"/></linearGradient>
+  </defs>
+  <rect width="1200" height="640" fill="url(#sky)"/>
+  <path d="M520 20c-40 40 20 70-20 110s30 60 10 100h200c-30-40 30-70-10-110s40-60 0-100z" fill="url(#smoke)"/>
+  <circle cx="600" cy="230" r="160" fill="url(#crater)"/>
+  <path d="M300 360l230-150c30-20 110-20 140 0l230 150z" fill="#2a1311"/>
+  <path d="M530 212c30-14 110-14 140 0l-18 16c-30-8-74-8-104 0z" fill="#ffb24a"/>
+  <path d="M572 226c-10 40-30 70-20 110l30 24c-6-44 10-84 18-132zM628 226c14 34 34 60 30 100l-26 30c4-40-8-84-20-128z" fill="url(#flow)" opacity=".9"/>
+  <path d="M0 360c120-40 220-10 320-30s200 10 280 0 220-30 330-10 180 20 270 0v320H0z" fill="url(#rock)"/>
+  <path d="M-10 470c90-20 150 10 230 0s120-40 200-30 120 50 200 40 150-40 240-30 140 40 220 30 90-20 120-16v34c-50 0-80 14-130 20s-130-26-220-30-140 30-240 38-110-36-200-38-130 30-210 30-120-26-210-8z" fill="url(#flow)"/>
+  <path d="M-10 470c90-20 150 10 230 0s120-40 200-30 120 50 200 40 150-40 240-30 140 40 220 30 90-20 120-16" fill="none" stroke="#ffe29a" stroke-width="3" opacity=".7"/>
+  <g fill="none" stroke="url(#flow)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M40 380l40 18 30-10 44 24 36-8 40 20" stroke-width="5"/><path d="M110 388l-10 24 22 16" stroke-width="3"/>
+    <path d="M1160 372l-44 20-30-8-46 22-34-6-40 18" stroke-width="5"/><path d="M1086 384l12 26-20 14" stroke-width="3"/>
+    <path d="M250 150l20 40-10 30 16 34M950 140l-18 44 12 26-14 36" stroke-width="3" opacity=".7"/>
+  </g>
+  <g fill="#1a0c0b">
+    <path d="M60 420l40-30 50 10 30 40-60 20-70-10zM1000 410l50-40 60 16 20 44-70 16-60-10zM440 560l60-40 70 16 20 40-90 20-60-10zM760 580l40-26 50 10 16 30-60 14z"/>
+  </g>
+  <path d="M0 600c200-20 400-10 600 6s400 4 600-10v44H0z" fill="#0b0505"/>
+  <g fill="#ffb24a"><circle cx="420" cy="170" r="3"/><circle cx="760" cy="140" r="2.5"/><circle cx="690" cy="90" r="2"/><circle cx="500" cy="110" r="2"/><circle cx="830" cy="220" r="2"/><circle cx="360" cy="240" r="2"/></g>
+  <g fill="#ff6a2a" opacity=".6"><circle cx="300" cy="300" r="1.8"/><circle cx="900" cy="290" r="1.8"/><circle cx="150" cy="330" r="1.5"/><circle cx="1080" cy="320" r="1.5"/></g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#143143"/><stop offset=".56" stop-color="#547f89"/><stop offset="1" stop-color="#d2b89e"/></linearGradient>
+    <linearGradient id="lake" x2="0" y2="1"><stop stop-color="#2c5964"/><stop offset="1" stop-color="#102b3b"/></linearGradient>
+    <radialGradient id="sun"><stop stop-color="#ffedc6"/><stop offset=".58" stop-color="#ffd69c"/><stop offset="1" stop-color="#ffcf91" stop-opacity="0"/></radialGradient>
+    <g id="pine" fill="#102d35"><path d="M0-86-20-45h10l-20 30h12L-38 16H-5v26H5V16h33L18-15h12L10-45h10z"/></g>
+  </defs>
+  <rect width="1200" height="640" fill="url(#sky)"/>
+  <circle cx="835" cy="160" r="133" fill="url(#sun)" opacity=".7"/><circle cx="835" cy="160" r="49" fill="#f9d7a3"/>
+  <path d="M0 316 139 182 220 253 382 112 533 278 684 162 800 273 968 118 1108 284 1200 213v230H0z" fill="#7da0a3"/>
+  <path d="m316 168 66-56 65 89-64-39-47 39zm601 7 51-57 70 83-67-37-43 38zM92 236l47-54 55 59-55-25z" fill="#c9dcce" opacity=".74"/>
+  <path d="M0 361 162 282 252 343 398 232 532 354 650 272 810 350 966 243 1110 362 1200 309v149H0z" fill="#436c72"/>
+  <path d="M0 405q173-104 321-30t280-2q156-83 293 4t306-2v93H0z" fill="#254e58"/>
+  <path d="M0 443q122-18 264 7t308-16q173-31 307 15t321-15v206H0z" fill="url(#lake)"/>
+  <g fill="none" stroke="#b9d4cd" stroke-linecap="round" opacity=".42"><path d="M46 481h179m68-19h138m274 15h171m74-12h155M89 532h233m181-25h131m89 37h215m25-30h170M43 584h167m161-11h216m93 20h218" stroke-width="3"/><path d="M361 490h65m449 35h71m-355 43h112" stroke-width="1.5"/></g>
+  <path d="M0 565q98-32 231-6t225-6q108-24 222 16t239-8q124-34 283 10v69H0z" fill="#153641"/>
+  <g opacity=".9"><use href="#pine" transform="translate(56 432) scale(.9)"/><use href="#pine" transform="translate(104 445) scale(.72)"/><use href="#pine" transform="translate(169 425) scale(1.03)"/><use href="#pine" transform="translate(235 450) scale(.64)"/><use href="#pine" transform="translate(965 441) scale(.72)"/><use href="#pine" transform="translate(1022 424) scale(1.02)"/><use href="#pine" transform="translate(1081 442) scale(.75)"/><use href="#pine" transform="translate(1151 420) scale(1.1)"/></g>
+  <g fill="#ebd5ae" opacity=".7"><circle cx="120" cy="103" r="1.6"/><circle cx="256" cy="67" r="1.3"/><circle cx="580" cy="89" r="1.5"/><circle cx="1060" cy="73" r="1.7"/></g>
+</svg>

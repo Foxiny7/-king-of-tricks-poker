@@ -1,0 +1,497 @@
+/* Comic look for every screen, loaded last. Black and white with hard offset shadows,
+   slanted strips and halftone; red is kept for hearts, diamonds, danger and the one
+   thing that needs the eye right now (whose turn, what is selected). */
+:root {
+  --comic-ink: #0b0b0b;
+  --comic-paper: #ffffff;
+  --comic-red: #e5001e;
+  /* Panels and the highlight colour follow the table theme, so switching the felt retints every screen. */
+  --comic-surface: color-mix(in srgb, var(--panel) 80%, #000);
+  --comic-hot: var(--accent);
+  --comic-raised: color-mix(in srgb, var(--comic-surface) 93%, #fff);
+  --comic-raised-hover: color-mix(in srgb, var(--comic-surface) 86%, #fff);
+  --comic-rule: color-mix(in srgb, var(--comic-surface) 78%, #fff);
+  --comic-sans: 'Microsoft YaHei UI', 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', 'Hiragino Sans GB', sans-serif;
+  --comic-serif: 'STSong', 'Songti SC', 'SimSun', 'Noto Serif SC', serif;
+  --comic-numbers: Impact, 'Haettenschweiler', 'Arial Narrow Bold', 'Arial Black', sans-serif;
+  --ui-display: var(--comic-sans);
+  --ui-title: var(--comic-sans);
+  --ui-numbers: var(--comic-numbers);
+  --ui-radius: 0;
+  --ui-radius-lg: 0;
+  --ui-shadow: 8px 8px 0 #000;
+  font-family: var(--comic-sans);
+}
+/* The comic felt itself: pure black and white, with red as the only colour. */
+:root[data-table-theme='comic'] {
+  --bg: #161616;
+  --page-glow: transparent;
+  --panel: #0e0e0e;
+  --panel-edge: #ffffff;
+  --text: #ffffff;
+  --muted: #bdbdbd;
+  --accent: #ffffff;
+  --danger: #ff3347;
+  --card-red: #e5001e;
+  --comic-surface: #0e0e0e;
+  --comic-hot: var(--comic-red);
+}
+
+body {
+  background: var(--bg) url('/textures/comic-page.svg') center / cover fixed;
+  color: var(--text);
+}
+::selection { color: var(--comic-ink); background: var(--comic-hot); }
+
+/* ---------- controls ---------- */
+button { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); color: #fff; font-weight: 700; }
+button:hover:not(:disabled) { color: var(--comic-ink); background: #fff; }
+button:disabled { cursor: not-allowed; }
+button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--comic-hot); outline-offset: 3px; }
+button.primary {
+  min-height: 48px;
+  border: 3px solid var(--comic-ink);
+  border-radius: 0;
+  outline: 3px solid #fff;
+  outline-offset: 0;
+  background: #fff;
+  color: var(--comic-ink);
+  font-weight: 900;
+  letter-spacing: .08em;
+  transform: skewX(-8deg);
+  box-shadow: 6px 6px 0 var(--comic-hot);
+  transition: transform .14s cubic-bezier(.2, 1.4, .3, 1), background-color .1s, color .1s;
+}
+button.primary:hover:not(:disabled) { color: var(--comic-ink); background: var(--comic-hot); filter: none; transform: skewX(-8deg) scale(1.03); }
+button.primary:disabled { color: #8a8a8a; background: var(--comic-raised); outline-color: #666; box-shadow: none; opacity: 1; }
+button.primary:focus-visible { outline: 3px solid var(--comic-hot); }
+button.danger { color: #fff; border-color: var(--comic-red); }
+button.danger:hover:not(:disabled) { color: #fff; background: var(--comic-red); }
+button.link-btn { border: 0; background: none; color: var(--muted); font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+button.link-btn:hover:not(:disabled) { color: #fff; background: none; }
+.subtle-btn { min-height: 40px; border: 2px solid #fff; border-radius: 0; color: #fff; background: var(--comic-surface); font-weight: 700; transform: skewX(-8deg); box-shadow: 4px 4px 0 #000; }
+.subtle-btn:hover:not(:disabled) { color: var(--comic-ink); background: #fff; box-shadow: 4px 4px 0 var(--comic-hot); }
+
+label { color: var(--muted); font-weight: 700; }
+input[type='text'],
+input[type='number'],
+select {
+  min-height: 46px;
+  border: 3px solid var(--comic-ink);
+  border-radius: 0;
+  outline: 2px solid #fff;
+  outline-offset: 0;
+  background: #fff;
+  color: var(--comic-ink);
+  font-weight: 700;
+  box-shadow: 4px 4px 0 #000;
+}
+input::placeholder { color: #8b8b8b; font-weight: 400; }
+input[type='text']:focus,
+input[type='number']:focus,
+select:focus { border-color: var(--comic-ink); outline-color: var(--comic-hot); box-shadow: 4px 4px 0 var(--comic-hot); }
+
+.eyebrow { color: var(--muted); font-weight: 900; letter-spacing: .16em; }
+.badge { padding: 2px 9px; border-radius: 0; color: var(--comic-ink); background: #fff; font-weight: 900; transform: skewX(-10deg); }
+.badge.muted { color: #fff; background: var(--comic-rule); }
+.avatar { color: var(--comic-ink); background: #fff; }
+
+/* ---------- headings: white tabs with a hard shadow ---------- */
+.section-heading { padding-bottom: 14px; border-bottom: 3px solid #fff; }
+.section-heading h2,
+.trick-panel-header h2,
+.modal-header h3,
+.showdown-banner h2 {
+  display: inline-block;
+  width: max-content;
+  max-width: 100%;
+  padding: 5px 18px 7px 12px;
+  color: var(--comic-ink);
+  background: #fff;
+  font: 900 20px/1.15 var(--comic-sans);
+  letter-spacing: .08em;
+  transform: skewX(-10deg) rotate(-1.5deg);
+  box-shadow: 5px 5px 0 var(--comic-hot);
+}
+.section-heading > span { border: 2px solid #fff; border-radius: 0; color: #fff; font: 400 14px var(--comic-numbers); letter-spacing: .08em; }
+
+/* ---------- panels: ink boxes with a white rule and a hard shadow ---------- */
+.room-code-banner,
+.setup-rules,
+.setup-players,
+.table-header,
+.showdown-banner,
+.action-bar,
+.modal-panel,
+.trick-panel,
+.gesture-dialog,
+.voice-console,
+.trick-selection-main,
+.trick-board-choice,
+.trick-intel-toast {
+  border: 3px solid #fff;
+  border-radius: 0;
+  background: var(--comic-surface);
+  box-shadow: 9px 9px 0 #000;
+  backdrop-filter: none;
+}
+.modal-header { border-radius: 0; background: var(--comic-surface); }
+.room-code-banner { box-shadow: 9px 9px 0 var(--comic-hot); }
+.room-code { color: #fff; font: 400 clamp(38px, 5vw, 56px)/1 var(--comic-numbers); letter-spacing: .16em; text-shadow: 4px 4px 0 var(--comic-hot); }
+.player-list li { border: 2px solid #fff; border-radius: 0; background: var(--comic-raised); }
+.player-list li.has-nameplate { border-color: #fff; }
+.player-avatar { border: 2px solid #fff; border-radius: 0; }
+.player-list-name { font-weight: 900; }
+.blind-presets button { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); color: #fff; font-weight: 900; }
+.blind-presets button:hover:not(.active):not(:disabled) { border-color: #fff; background: var(--comic-raised-hover); color: #fff; }
+.blind-presets button.active { color: var(--comic-ink); background: #fff; border-color: #fff; box-shadow: 4px 4px 0 var(--comic-hot); transform: skewX(-8deg); }
+.game-mode-options button small { color: #9a9a9a; }
+.game-mode-options button.active small { color: #333; }
+.field-caption { color: #fff; font-weight: 900; }
+.field-help { color: #a9a9a9; }
+.room-rule-summary > div { border-bottom: 2px solid var(--comic-rule); }
+.bet-limit-fields { border-top: 2px solid var(--comic-rule); }
+.leave-room-btn {
+  width: 100%;
+  min-height: 44px;
+  border: 2px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  background: var(--comic-surface);
+  font-weight: 900;
+  letter-spacing: .12em;
+  transform: skewX(-8deg);
+  box-shadow: 4px 4px 0 #000;
+  transition: transform .14s cubic-bezier(.2, 1.4, .3, 1), background-color .1s, border-color .1s;
+}
+.leave-room-btn:hover:not(:disabled) { color: #fff; border-color: var(--comic-red); background: var(--comic-red); transform: skewX(-8deg) translateY(-2px); }
+.ranking li { border-radius: 0; border: 2px solid #fff; background: var(--comic-surface); }
+.ranking li.first { border-color: var(--comic-hot); box-shadow: 5px 5px 0 var(--comic-hot); }
+.rank-chips, .rank-pos { font-family: var(--comic-numbers); font-weight: 400; }
+
+/* ---------- table ---------- */
+.table-header { box-shadow: 7px 7px 0 #000; }
+.table-room-info strong { color: #fff; font: 400 24px var(--comic-numbers); letter-spacing: .12em; }
+.table-room-info > .table-street-badge { border: 0; border-radius: 0; color: var(--comic-ink); background: #fff; font-weight: 900; transform: skewX(-10deg); }
+.table-tools { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); }
+.table-tools button { border: 0; border-radius: 0; font-weight: 900; }
+.table-tools button:hover:not(:disabled) { color: var(--comic-ink); background: #fff; }
+.table-felt[data-table-theme='comic'] {
+  --rail: #0b0b0b;
+  --rail-inner: #ffffff;
+  --table-line: rgba(255, 255, 255, .28);
+  background: url('/textures/comic-table.svg') center / cover;
+  box-shadow: inset 0 0 0 3px #fff, inset 0 0 60px #000c, 12px 14px 0 #000;
+}
+.table-felt { box-shadow: inset 0 0 0 2px var(--rail-inner, #fff), inset 0 0 48px #0008, 12px 14px 0 #000; }
+.pot { border: 3px solid var(--comic-ink); border-radius: 0; background: #fff; color: var(--comic-ink); transform: translateX(-50%) skewX(-10deg); box-shadow: 4px 4px 0 #000; }
+.pot span { color: #444; font-weight: 900; }
+.pot strong { color: var(--comic-ink); font: 400 20px var(--comic-numbers); letter-spacing: .04em; }
+.pot-fly { border: 2px solid var(--comic-ink); border-radius: 0; color: var(--comic-ink); background: #fff; font-family: var(--comic-numbers); font-weight: 400; }
+.gift-fly { border: 0; background: none; }
+
+.seat-info { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); box-shadow: 4px 4px 0 #000; }
+.seat-info.has-nameplate { border-color: #fff; background: linear-gradient(#0b0b0b8c, #0b0b0b8c), var(--nameplate) center / cover; }
+.seat.acting .seat-info,
+.seat.acting .seat-info.has-nameplate {
+  border-color: var(--comic-ink);
+  background: #fff;
+  color: var(--comic-ink);
+  box-shadow: 5px 5px 0 var(--comic-hot);
+  transform: scale(1.06) rotate(-2deg);
+}
+.seat.acting .seat-chips { color: var(--comic-ink); }
+.seat-info { transition: transform .16s cubic-bezier(.2, 1.4, .3, 1); }
+.seat-name { font-weight: 900; }
+.seat-avatar { border: 2px solid #fff; border-radius: 0; }
+.seat.acting .seat-avatar { border-color: var(--comic-ink); }
+.seat-chips { color: #fff; font: 400 13px var(--comic-numbers); letter-spacing: .04em; }
+.seat-action { color: #9a9a9a; font-weight: 700; }
+.seat-bet { border: 2px solid var(--comic-ink); border-radius: 0; color: var(--comic-ink); background: #fff; font: 400 13px var(--comic-numbers); transform: skewX(-10deg); box-shadow: 3px 3px 0 #000; }
+.chip-token { border: 2px solid var(--comic-ink); background: repeating-conic-gradient(#fff 0deg 45deg, var(--comic-red) 45deg 90deg); }
+.dealer-chip { border: 2px solid var(--comic-ink); color: var(--comic-ink); background: #fff; font-family: var(--comic-numbers); font-weight: 400; box-shadow: 2px 2px 0 #000; }
+.dealer-chip, .blind-chip { z-index: 3; }
+.blind-chip { padding: 1px 7px; border: 2px solid var(--comic-ink); border-radius: 0; color: #fff; background: var(--comic-surface); outline: 2px solid #fff; font: 400 12px/1.2 var(--comic-numbers); letter-spacing: .06em; transform: skewX(-10deg); }
+.bb-chip { color: var(--comic-ink); background: #fff; outline-color: var(--comic-ink); }
+.seat-trick-status { border: 2px solid #fff; border-radius: 0; color: #fff; background: var(--comic-surface); font-weight: 900; }
+.seat.acting .seat-trick-status { border-color: var(--comic-ink); }
+.seat-trick-status:hover { color: var(--comic-ink); background: #fff; }
+/* Blind markers sit on the info box's corner so they never cover the left hole card. */
+.blind-chip { top: 40px; left: -18px; }
+.seat-menu { position: absolute; top: 44px; right: -10px; z-index: 6; }
+.player-menu-toggle {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 22px;
+  padding: 0;
+  border: 2px solid #fff;
+  border-radius: 0;
+  background: var(--comic-surface);
+  color: #fff;
+  font: 900 12px/1 var(--comic-sans);
+  letter-spacing: -.05em;
+  box-shadow: 2px 2px 0 #000;
+}
+.player-menu-toggle[aria-expanded='true'] { color: var(--comic-ink); background: #fff; }
+.player-list .player-menu { margin-left: auto; }
+/* 出千 on the corner of the player's own nameplate, in the trick accent. */
+.seat-trick-btn {
+  position: absolute;
+  z-index: 6;
+  top: -13px;
+  left: -13px;
+  min-width: 46px;
+  height: 26px;
+  padding: 0 8px;
+  border: 2px solid #fff;
+  border-radius: 0;
+  color: #181513;
+  background: var(--accent);
+  font: 900 13px/1 var(--comic-sans);
+  letter-spacing: .08em;
+  box-shadow: 2px 2px 0 #000;
+}
+.seat-trick-btn:hover { background: color-mix(in srgb, var(--accent) 80%, white); }
+/* A small link-like button on a form caption, e.g. the trick catalog above the 千术模式 choice. */
+.field-caption-btn {
+  padding: 2px 8px;
+  border: 2px solid #fff;
+  border-radius: 0;
+  background: var(--comic-surface);
+  color: #fff;
+  font: 900 11px/1.2 var(--comic-sans);
+  letter-spacing: .04em;
+  box-shadow: 2px 2px 0 var(--comic-hot);
+}
+.field-caption-btn:hover { color: var(--comic-ink); background: #fff; }
+.room-rule-summary dd .field-caption-btn { margin-left: 8px; }
+.player-list .player-menu-toggle { width: 34px; height: 28px; font-size: 14px; }
+.player-menu-list {
+  position: fixed;
+  z-index: 60;
+  display: grid;
+  min-width: 118px;
+  border: 2px solid #fff;
+  background: var(--comic-surface);
+  box-shadow: 5px 5px 0 var(--comic-hot);
+  transform: scale(var(--ui-scale, 1));
+  transform-origin: top left;
+  animation: playerMenuIn .14s ease-out both;
+}
+.player-menu-list button {
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 0;
+  border-bottom: 1px solid var(--comic-rule);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  text-align: left;
+  white-space: nowrap;
+}
+.player-menu-list button:last-child { border-bottom: 0; }
+.player-menu-list button:hover:not(:disabled) { color: var(--comic-ink); background: #fff; }
+.player-menu-list button.danger { color: #ff8894; }
+.player-menu-list button.danger:hover:not(:disabled) { color: #fff; background: var(--comic-red); }
+@keyframes playerMenuIn { from { opacity: 0; } }
+.settlement-cards { display: flex; gap: 4px; margin-top: 8px; }
+.settlement-cards .card { width: 32px; height: 45px; animation: none; }
+.settlement-cards .card-suit { font-size: 18px; }
+.settlement-cards .card-rank-top, .settlement-cards .card-rank-bottom { left: 3px; font-size: 10px; }
+.settlement-cards .card-rank-top { top: 3px; }
+.settlement-cards .card-rank-bottom { bottom: 3px; }
+.table-footer .leave-room-btn { width: auto; min-width: 120px; padding: 0 22px; }
+.seat-peek-btn { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); box-shadow: 4px 4px 0 #000; }
+.seat-peek-btn:hover { background: #fff; color: var(--comic-ink); }
+.seat-peek-label svg { color: var(--comic-hot); }
+.card-intel-mark { border: 2px solid var(--comic-ink); border-radius: 0; color: var(--comic-ink); background: #fff; font-weight: 900; }
+.seat-card-target { border: 3px solid #fff; border-radius: 0; background: transparent; box-shadow: 4px 4px 0 #000; }
+.seat-card-target:hover, .seat-card-target:focus-visible { box-shadow: 5px 5px 0 var(--comic-hot); }
+.seat-card-target.chosen { border-color: var(--comic-hot); box-shadow: 5px 5px 0 var(--comic-hot); }
+
+.showdown-banner { box-shadow: 9px 9px 0 var(--comic-hot); }
+/* Title row with the 收起 / 展开 control; folded, only a one-line summary and the continue gate stay. */
+.showdown-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.showdown-head h2 { margin: 0; }
+.showdown-fold {
+  flex: none;
+  padding: 5px 12px;
+  border: 2px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  background: var(--comic-surface);
+  font: 900 12px/1 var(--comic-sans);
+  letter-spacing: .08em;
+  box-shadow: 2px 2px 0 #000;
+}
+.showdown-fold:hover { color: var(--comic-ink); background: #fff; }
+.showdown-summary { margin: 0 0 4px; overflow: hidden; color: #fff; font-weight: 800; text-overflow: ellipsis; white-space: nowrap; }
+.settlement-row { border-bottom: 2px solid var(--comic-rule); }
+.settlement-player { font-weight: 700; }
+.settlement-amount { color: #fff; font: 400 18px var(--comic-numbers); letter-spacing: .04em; }
+.settlement-rebuy-btn,
+.settlement-peek-btn,
+.settlement-peek-viewed { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); color: #fff; }
+.settlement-peek-btn strong, .settlement-peek-viewed span { color: #fff; }
+
+/* ---------- action bar ---------- */
+.action-bar { box-shadow: 10px 10px 0 var(--comic-hot); }
+.action-heading strong { color: #fff; font-size: 20px; font-weight: 900; letter-spacing: .06em; }
+.action-heading > span b { font-family: var(--comic-numbers); font-weight: 400; font-size: 15px; }
+.hand-rank-badge,
+.action-heading > div .hand-rank-badge { border-radius: 0; color: var(--comic-ink); background: #fff; font-weight: 900; transform: skewX(-10deg); box-shadow: 3px 3px 0 var(--comic-hot); }
+.timer-bar { height: 8px; border: 2px solid #fff; border-radius: 0; background: #000; }
+.timer-fill { border-radius: 0; background: #fff; }
+.timer-count { color: #fff; font: 400 22px var(--comic-numbers); }
+.action-bar-urgent .timer-fill { background: var(--comic-red); }
+.action-bar-urgent .timer-count { color: var(--comic-red); }
+.action-rule-note { border-left: 4px solid var(--comic-hot); border-radius: 0; color: #fff; background: var(--comic-raised); }
+.action-buttons > button,
+.action-buttons > button:not(.danger):not(.allin) {
+  min-height: 50px;
+  border: 3px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  background: var(--comic-surface);
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  transform: skewX(-10deg);
+  box-shadow: 4px 4px 0 #000;
+  transition: transform .12s cubic-bezier(.2, 1.4, .3, 1), background-color .1s, color .1s;
+}
+.action-buttons > button:hover:not(:disabled) { color: var(--comic-ink); background: #fff; filter: none; transform: skewX(-10deg) translateY(-2px); box-shadow: 5px 5px 0 var(--comic-hot); }
+.action-buttons > button.danger { border-color: #fff; color: #fff; background: var(--comic-surface); }
+.action-buttons > button.danger:hover:not(:disabled) { color: #fff; background: var(--comic-raised-hover); box-shadow: 5px 5px 0 #000; }
+.action-buttons > button.allin { border-color: #fff; color: #fff; background: var(--comic-red); }
+.action-buttons > button.allin:hover:not(:disabled) { color: var(--comic-red); background: #fff; }
+.action-buttons > button.raise-toggle.active { color: var(--comic-ink); background: #fff; box-shadow: 5px 5px 0 var(--comic-hot); }
+.action-buttons > button:disabled { color: #777; border-color: var(--comic-rule); background: var(--comic-raised); box-shadow: none; }
+.raise-controls { border-top: 2px solid var(--comic-rule); }
+.raise-summary strong { color: #fff; font: 400 30px var(--comic-numbers); letter-spacing: .04em; }
+.raise-presets button,
+.chip-btn { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); color: #fff; font-weight: 900; }
+.raise-presets button:hover:not(:disabled),
+.chip-btn:hover:not(:disabled) { border-color: #fff; color: var(--comic-ink); background: #fff; }
+.chip-btn { font-family: var(--comic-numbers); font-weight: 400; letter-spacing: .04em; }
+
+/* ---------- cards: the comic deck ---------- */
+.card-comic.card-face { border: 2px solid var(--comic-ink); border-radius: 5px; background: #fff; color: var(--comic-ink); box-shadow: 3px 3px 0 #000; }
+.card-comic.card-red { color: var(--comic-red); }
+.card-comic .card-rank-top,
+.card-comic .card-rank-bottom { font-family: var(--comic-numbers); font-weight: 400; letter-spacing: -.02em; }
+.card-comic.card-back { border: 2px solid #fff; border-radius: 5px; background: url('/textures/comic-card.svg') center / cover; box-shadow: 3px 3px 0 #000; }
+.seat-cards .card-comic { box-shadow: 3px 3px 0 #000; }
+
+/* ---------- trick mode ---------- */
+.trick-selection { background: transparent; }
+.trick-selection-main { box-shadow: 10px 10px 0 var(--comic-hot); }
+.trick-selection-heading h1 { color: #fff; font: 900 clamp(24px, 3vw, 34px)/1.2 var(--comic-sans); letter-spacing: .06em; text-shadow: 4px 4px 0 var(--comic-hot); }
+.trick-selection-heading p, .trick-selection-topline { color: #c9c9c9; }
+.trick-selection-clock strong { color: #fff; font: 400 44px var(--comic-numbers); }
+.trick-phase-node { border-bottom: 4px solid var(--comic-rule); color: #9a9a9a; font-weight: 700; }
+.trick-phase-node.current { border-color: var(--comic-hot); color: #fff; }
+.trick-phase-node.done { border-color: #fff; }
+.trick-phase-number { color: #fff; font: 400 22px var(--comic-numbers); }
+.trick-offer-card[class*='rarity-'],
+.trick-offer-card {
+  border: 3px solid #fff;
+  border-radius: 0;
+  box-shadow: inset 0 6px 0 var(--rarity), 7px 7px 0 #000;
+  transition: transform .14s cubic-bezier(.2, 1.4, .3, 1), box-shadow .14s;
+}
+/* Each rarity keeps its own card art inside the comic frame: a woven common, a blue-lit rare,
+   a violet epic and a gold-rayed legendary. Shared by the draft, the loadout and the catalog. */
+.trick-offer-card.rarity-common,
+.trick-owned-card.rarity-common { background: radial-gradient(circle at 85% 8%, #93a5942a, transparent 42%), repeating-linear-gradient(45deg, #152620, #152620 3px, #192b24 4px); }
+.trick-offer-card.rarity-rare,
+.trick-owned-card.rarity-rare { background: radial-gradient(circle at 88% 10%, #7ac7f04a, transparent 46%), linear-gradient(145deg, #193747, #0d2230 65%, #10202b); }
+.trick-offer-card.rarity-epic,
+.trick-owned-card.rarity-epic { background: radial-gradient(circle at 84% 14%, #be8fe14c, transparent 46%), radial-gradient(circle at 8% 100%, #614a9830, transparent 55%), linear-gradient(145deg, #272044, #181d36 72%, #171626); }
+.trick-offer-card.rarity-legendary,
+.trick-owned-card.rarity-legendary { background: radial-gradient(circle at 80% 15%, #eac27f6b, transparent 39%), repeating-conic-gradient(from 10deg at 84% 23%, #e8bb5912 0deg 8deg, transparent 8deg 18deg), linear-gradient(140deg, #493216, #221b17 58%, #342313); }
+.trick-offer-card[class*='rarity-']:hover:not(:disabled) { border-color: #fff; transform: translateY(-6px) rotate(-1deg); box-shadow: inset 0 6px 0 var(--rarity), 9px 9px 0 var(--comic-hot); }
+.trick-offer-card strong { color: #fff; font: 900 21px var(--comic-sans); letter-spacing: .04em; }
+.trick-card-rarity { padding: 1px 7px; color: var(--comic-ink); background: var(--rarity); font-weight: 900; }
+.trick-card-meta .trick-card-kind { border-left: 2px solid var(--comic-rule); color: #cfcfcf; }
+.trick-card-description { color: #e3e3e3; }
+.trick-card-details { color: #cfcfcf; }
+.trick-card-select { color: #fff; font-weight: 900; letter-spacing: .1em; }
+.trick-offer-refresh { border: 2px solid #fff; border-radius: 0; color: #fff; background: var(--comic-surface); font-weight: 900; }
+.trick-owned-summary > span:not(:first-child),
+.trick-final-player > div span { border-radius: 0; font-weight: 700; }
+.trick-panel::backdrop { background: #000000d9; backdrop-filter: none; }
+.trick-panel-close,
+.gesture-close { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); color: #fff; }
+.trick-owned-card,
+.trick-owned-card[class*='rarity-'] { border: 2px solid #fff; border-radius: 0; box-shadow: inset 5px 0 0 var(--rarity), 4px 4px 0 #000; color: #fff; }
+.trick-owned-card.selected { border-color: var(--rarity); box-shadow: inset 5px 0 0 var(--rarity), 0 0 0 2px var(--rarity), 6px 6px 0 var(--comic-hot); transform: translateY(-2px); }
+.trick-owned-card small, .trick-catalog-card p { color: #cfcfcf; }
+.trick-catalog-card dd { color: #e6e6e6; }
+.trick-catalog-card dl { border-top: 2px solid var(--comic-rule); }
+.trick-catalog-controls { border-top: 2px solid var(--comic-rule); border-bottom: 2px solid var(--comic-rule); }
+.trick-catalog-filters button { border: 2px solid #fff; border-radius: 0; color: #fff; background: var(--comic-surface); font-weight: 900; transform: skewX(-10deg); }
+.trick-catalog-filters button.active { color: var(--comic-ink); background: #fff; box-shadow: 3px 3px 0 var(--comic-hot); }
+.trick-catalog-search input { border: 3px solid var(--comic-ink); border-radius: 0; color: var(--comic-ink); background: #fff; }
+.trick-catalog-count { color: #fff; font-family: var(--comic-numbers); font-size: 14px; letter-spacing: .06em; }
+.trick-panel-activate select { border: 3px solid var(--comic-ink); color: var(--comic-ink); background: #fff; }
+.trick-panel-intel p, .trick-intel-view { border-left: 4px solid var(--comic-hot); background: var(--comic-raised); }
+.trick-final-loadouts h3, .trick-panel-intel h3 { color: #fff; font-weight: 900; }
+.trick-target-prompt { border: 3px solid var(--comic-ink); border-radius: 0; color: var(--comic-ink); background: #fff; box-shadow: 6px 6px 0 var(--comic-hot); font-weight: 700; }
+.trick-target-prompt button { border: 2px solid var(--comic-ink); border-radius: 0; color: #fff; background: var(--comic-surface); }
+.trick-quick-actions button { border: 2px solid #fff; border-radius: 0; color: #fff; background: var(--comic-surface); font-weight: 900; transform: skewX(-10deg); }
+.trick-board-choice { box-shadow: 10px 10px 0 var(--comic-hot); }
+.trick-board-choice-head strong { color: #fff; font-weight: 900; }
+.trick-board-choice-cards button { border: 2px solid transparent; border-radius: 0; background: var(--comic-raised); }
+.trick-board-choice-cards button.chosen { border-color: #fff; background: var(--comic-raised-hover); box-shadow: 4px 4px 0 var(--comic-hot); }
+
+/* ---------- overlays, pages and small surfaces ---------- */
+.modal-backdrop { background: #000000d9; }
+.notification-box {
+  border: 3px solid var(--comic-ink);
+  border-radius: 0;
+  color: var(--comic-ink);
+  background: #fff;
+  font-weight: 900;
+  box-shadow: 7px 7px 0 var(--comic-hot);
+  transform: rotate(-1.5deg);
+  backdrop-filter: none;
+}
+.connection-notice { border: 3px solid var(--comic-ink); border-radius: 0; color: var(--comic-ink); background: #fff; font-weight: 900; box-shadow: 6px 6px 0 var(--comic-hot); }
+.wechat-banner { border-bottom: 3px solid var(--comic-hot); color: var(--comic-ink); background: #fff; font-weight: 700; }
+.gesture-dialog::backdrop { background: #000000cc; backdrop-filter: none; }
+.gesture-sheet-header { border-bottom: 2px solid #fff; }
+.gesture-grid button { border: 2px solid var(--comic-rule); border-radius: 0; background: var(--comic-raised); }
+.gesture-grid button:hover:not(:disabled) { border-color: #fff; background: #fff; }
+.emote-toggle-btn { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); }
+.hand-rankings li { border: 2px solid var(--comic-rule); border-radius: 0; background: var(--comic-raised); }
+
+.voice-console { box-shadow: 7px 7px 0 #000; }
+.voice-emblem, .voice-console .voice-icon-btn, .voice-avatar { border-radius: 0; }
+.voice-emblem.active { color: var(--comic-ink); background: #fff; }
+.voice-console .voice-join { border: 2px solid var(--comic-ink); border-radius: 0; color: var(--comic-ink); background: #fff; font-weight: 900; transform: skewX(-10deg); box-shadow: 3px 3px 0 var(--comic-hot); }
+.voice-console .voice-icon-btn { border: 2px solid #fff; background: var(--comic-surface); }
+.voice-console .voice-icon-btn.muted { color: #fff; background: var(--comic-red); border-color: #fff; }
+.theme-swatch { border: 2px solid #fff; border-radius: 0; background: var(--comic-surface); font-weight: 700; transition: transform .14s cubic-bezier(.2, 1.4, .3, 1); }
+.theme-swatch:hover:not(:disabled) { color: #fff; background: var(--comic-raised); transform: translateY(-3px) rotate(-1deg); }
+.theme-swatch.active { border-color: #fff; background: #fff; color: var(--comic-ink); box-shadow: 5px 5px 0 var(--comic-hot); }
+.theme-card-preview, .theme-table-preview { border-radius: 3px; }
+.theme-table-preview { border-radius: 50% / 40%; }
+.nameplate-option { border: 2px solid var(--comic-rule); border-radius: 0; background: var(--comic-raised); font-weight: 700; }
+.nameplate-option:hover:not(:disabled) { color: #fff; background: var(--comic-raised); border-color: #fff; }
+.nameplate-option.active { border-color: #fff; box-shadow: 5px 5px 0 var(--comic-hot), inset 0 0 0 1px #fff; background: var(--comic-raised); color: #fff; }
+.nameplate-swatch { border-radius: 0; border-color: #fff; }
+
+/* Pages opened from the title keep an oversized faded title, as on printed menus. */
+@media (orientation: portrait) and (max-width: 720px) {
+  .action-bar { box-shadow: 0 -4px 0 var(--comic-hot), 6px 6px 0 #000; }
+  .action-buttons > button,
+  .action-buttons > button:not(.danger):not(.allin) { min-height: 48px; padding: 8px 4px; font-size: 14px; letter-spacing: .02em; white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='on']) .seat-info, :root:not([data-motion='on']) button.primary, :root:not([data-motion='on']) .action-buttons > button, :root:not([data-motion='on']) .trick-offer-card, :root:not([data-motion='on']) .theme-swatch { transition: none; }
+}
+:root[data-motion='off'] .seat-info, :root[data-motion='off'] button.primary, :root[data-motion='off'] .action-buttons > button, :root[data-motion='off'] .trick-offer-card, :root[data-motion='off'] .theme-swatch { transition: none; }

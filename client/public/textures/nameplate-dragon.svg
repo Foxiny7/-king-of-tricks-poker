@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#8a171b"/><stop offset=".5" stop-color="#520d11"/><stop offset="1" stop-color="#8a171b"/></linearGradient>
+    <linearGradient id="gold" x2="0" y2="1"><stop stop-color="#fbe0a0"/><stop offset=".55" stop-color="#e0a94a"/><stop offset="1" stop-color="#b07a2c"/></linearGradient>
+    <pattern id="scales" width="20" height="12" patternUnits="userSpaceOnUse"><path d="M0 12a10 10 0 0 1 20 0M-10 6a10 10 0 0 1 20 0M10 6a10 10 0 0 1 20 0" fill="none" stroke="#e8b24a" stroke-opacity=".3" stroke-width="1.2"/></pattern>
+    <radialGradient id="pearl" cx=".35" cy=".35"><stop stop-color="#fff8e6"/><stop offset=".6" stop-color="#f3cf86"/><stop offset="1" stop-color="#b98a3c"/></radialGradient></defs>
+
+  <rect width="300" height="100" fill="url(#bg)"/><rect width="300" height="100" fill="url(#scales)"/>
+  <rect width="300" height="100" fill="url(#bg)" opacity=".4"/>
+  <g fill="none" stroke="url(#gold)"><path d="M0 6.5H300M0 93.5H300" stroke-width="2"/><path d="M0 10.5H300M0 89.5H300" stroke-width=".8" opacity=".7"/></g>
+  <g transform="translate(44 74) scale(0.95 0.95)">
+    <path d="M-30 8c-8 0-12-10-4-14 0-10 12-14 18-7 4-9 18-9 21 1 9-3 16 6 11 13 6 1 8 7 4 7z" fill="url(#gold)"/>
+    <path d="M-22 4c-3-4 1-9 6-7M-6-6c2-5 9-5 11 0M10 0c4-2 8 1 7 5" fill="none" stroke="#6b1a12" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M-34 8c10 3 30 3 52 0" fill="none" stroke="#6b1a12" stroke-width="1.2" opacity=".6"/>
+  </g><g transform="translate(256 34) scale(-0.95 0.95)">
+    <path d="M-30 8c-8 0-12-10-4-14 0-10 12-14 18-7 4-9 18-9 21 1 9-3 16 6 11 13 6 1 8 7 4 7z" fill="url(#gold)"/>
+    <path d="M-22 4c-3-4 1-9 6-7M-6-6c2-5 9-5 11 0M10 0c4-2 8 1 7 5" fill="none" stroke="#6b1a12" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M-34 8c10 3 30 3 52 0" fill="none" stroke="#6b1a12" stroke-width="1.2" opacity=".6"/>
+  </g><g transform="translate(20 32) scale(0.55 0.55)">
+    <path d="M-30 8c-8 0-12-10-4-14 0-10 12-14 18-7 4-9 18-9 21 1 9-3 16 6 11 13 6 1 8 7 4 7z" fill="url(#gold)"/>
+    <path d="M-22 4c-3-4 1-9 6-7M-6-6c2-5 9-5 11 0M10 0c4-2 8 1 7 5" fill="none" stroke="#6b1a12" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M-34 8c10 3 30 3 52 0" fill="none" stroke="#6b1a12" stroke-width="1.2" opacity=".6"/>
+  </g><g transform="translate(282 76) scale(-0.55 0.55)">
+    <path d="M-30 8c-8 0-12-10-4-14 0-10 12-14 18-7 4-9 18-9 21 1 9-3 16 6 11 13 6 1 8 7 4 7z" fill="url(#gold)"/>
+    <path d="M-22 4c-3-4 1-9 6-7M-6-6c2-5 9-5 11 0M10 0c4-2 8 1 7 5" fill="none" stroke="#6b1a12" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M-34 8c10 3 30 3 52 0" fill="none" stroke="#6b1a12" stroke-width="1.2" opacity=".6"/>
+  </g>
+  <circle cx="226" cy="70" r="6" fill="url(#pearl)"/><circle cx="226" cy="70" r="9" fill="none" stroke="#f3cf86" stroke-opacity=".4"/>
+</svg>

@@ -1,0 +1,134 @@
+:root {
+  color-scheme: dark;
+  --bg: #07191b;
+  --page-glow: rgba(61, 137, 121, 0.22);
+  --panel: #122729;
+  --panel-edge: rgba(221, 193, 130, 0.2);
+  --text: #f4f1e8;
+  --muted: #aebeb9;
+  --accent: #e3c57e;
+  --danger: #e77c70;
+  --card-red: #c83e3d;
+  --ui-scale: 1;
+  font-family: 'Microsoft YaHei UI', 'Noto Sans SC', 'Segoe UI', system-ui, sans-serif;
+}
+
+:root[data-table-theme='blue'] {
+  --bg: #061325;
+  --page-glow: rgba(57, 131, 203, 0.27);
+  --panel: #0d2037;
+  --panel-edge: rgba(145, 209, 255, 0.19);
+  --accent: #8fd5ff;
+  --muted: #a7bac9;
+}
+
+:root[data-table-theme='red'] {
+  --bg: #210907;
+  --page-glow: rgba(194, 65, 42, 0.28);
+  --panel: #32100d;
+  --panel-edge: rgba(242, 171, 95, 0.2);
+  --accent: #f0b25c;
+  --muted: #cbb0a5;
+}
+
+:root[data-table-theme='purple'] {
+  --bg: #160919;
+  --page-glow: rgba(164, 79, 189, 0.27);
+  --panel: #28112c;
+  --panel-edge: rgba(232, 170, 255, 0.2);
+  --accent: #efadff;
+  --muted: #c9b2d0;
+}
+
+:root[data-table-theme='copper'] {
+  --bg: #17100a;
+  --page-glow: rgba(188, 121, 57, 0.25);
+  --panel: #2b1d12;
+  --panel-edge: rgba(232, 187, 112, 0.2);
+  --accent: #e8bd70;
+  --muted: #c7b39a;
+}
+
+:root[data-table-theme='jade'] {
+  --bg: #061a14;
+  --page-glow: rgba(62, 183, 139, 0.25);
+  --panel: #0d2a21;
+  --panel-edge: rgba(173, 229, 192, 0.2);
+  --accent: #afe8bf;
+  --muted: #aec7bb;
+}
+
+:root[data-table-theme='noir'] {
+  --bg: #090a0d;
+  --page-glow: rgba(135, 145, 166, 0.18);
+  --panel: #17191f;
+  --panel-edge: rgba(220, 225, 239, 0.18);
+  --accent: #d7dce8;
+  --muted: #b5bac7;
+}
+
+:root[data-table-theme='aurora'] {
+  --bg: #061422;
+  --page-glow: rgba(75, 211, 203, 0.24);
+  --panel: #0d2635;
+  --panel-edge: rgba(117, 225, 232, 0.2);
+  --accent: #91f1df;
+  --muted: #b1d0d0;
+}
+
+:root[data-table-theme='rosewood'] {
+  --bg: #1d090b;
+  --page-glow: rgba(201, 76, 92, 0.22);
+  --panel: #321115;
+  --panel-edge: rgba(244, 171, 142, 0.19);
+  --accent: #f2b383;
+  --muted: #d2b2a6;
+}
+
+:root[data-table-theme='moonbase'] { --bg: #080e1b; --page-glow: rgba(120, 174, 255, .25); --panel: #17243b; --panel-edge: rgba(174, 212, 255, .2); --accent: #c7dcff; --muted: #aabbd4; }
+:root[data-table-theme='bamboo-grove'] { --bg: #091a13; --page-glow: rgba(102, 173, 108, .23); --panel: #183024; --panel-edge: rgba(192, 218, 151, .2); --accent: #d4dda0; --muted: #b3c5ac; }
+:root[data-table-theme='lava'] { --bg: #170b0b; --page-glow: rgba(221, 81, 43, .27); --panel: #321915; --panel-edge: rgba(242, 160, 92, .2); --accent: #f2bd74; --muted: #cbb0a1; }
+:root[data-table-theme='glacier'] { --bg: #07151e; --page-glow: rgba(91, 191, 219, .25); --panel: #112a36; --panel-edge: rgba(168, 226, 240, .2); --accent: #b3edfa; --muted: #a9c6d0; }
+:root[data-table-theme='desert'] { --bg: #1e140e; --page-glow: rgba(218, 151, 77, .24); --panel: #302116; --panel-edge: rgba(237, 195, 130, .2); --accent: #f0cd8b; --muted: #c9b49a; }
+:root[data-table-theme='ink'] { --bg: #111512; --page-glow: rgba(179, 182, 158, .15); --panel: #222923; --panel-edge: rgba(223, 220, 191, .17); --accent: #e1d9b7; --muted: #b7bdb0; }
+:root[data-table-theme='deepsea'] { --bg: #06131b; --page-glow: rgba(32, 156, 174, .24); --panel: #0d2731; --panel-edge: rgba(108, 218, 221, .2); --accent: #a0e9df; --muted: #a9c9c9; }
+:root[data-table-theme='colosseum'] { --bg: #1a100d; --page-glow: rgba(161, 93, 59, .23); --panel: #2d1c16; --panel-edge: rgba(222, 177, 120, .19); --accent: #e4c28e; --muted: #c5b1a1; }
+:root[data-table-theme='zen'] { --bg: #15180f; --page-glow: rgba(139, 150, 91, .2); --panel: #282d20; --panel-edge: rgba(222, 213, 169, .18); --accent: #e2d8a7; --muted: #c0c0a4; }
+:root[data-table-theme='quantum'] { --bg: #0a0b20; --page-glow: rgba(118, 102, 221, .27); --panel: #191938; --panel-edge: rgba(171, 153, 255, .21); --accent: #d0b8ff; --muted: #b5b5d2; }
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  zoom: var(--ui-scale);
+}
+
+body {
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 50% 0%, var(--page-glow) 0%, rgba(0, 0, 0, 0) 48%),
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 20%, rgba(0, 0, 0, 0.7) 100%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 8px),
+    url("/textures/felt.jpg");
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
+  background-size: cover, cover, auto, 340px 340px;
+  background-attachment: fixed, fixed, fixed, fixed;
+  color: var(--text);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}

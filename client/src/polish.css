@@ -1,0 +1,117 @@
+/* Final pass loaded after App.css and experience.css: one sans UI face, quiet
+   surfaces, and a compact board so the pot never collides with the hero seat. */
+:root {
+  --ui-title: 'STSong', 'Songti SC', 'Noto Serif CJK SC', 'SimSun', serif;
+  --ui-display: 'PingFang SC', 'Microsoft YaHei UI', 'Noto Sans SC', 'Segoe UI', system-ui, sans-serif;
+  --ui-radius-lg: 16px;
+  --ui-radius: 12px;
+}
+
+body {
+  background-image: radial-gradient(ellipse at 50% 0%, var(--page-glow) 0%, transparent 55%), url('/textures/felt.jpg');
+  background-repeat: no-repeat, repeat;
+  background-size: cover, 320px 320px;
+  background-attachment: fixed, fixed;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The game name keeps its display face; every other heading uses the UI sans. */
+.section-heading h2,
+.showdown-banner h2,
+.trick-selection-heading h1,
+.trick-selection-waiting h2,
+.trick-panel-header h2,
+.trick-offer-card strong {
+  font-family: var(--ui-display);
+  font-weight: 700;
+  letter-spacing: 0;
+}
+.trick-selection-heading h1 { font-size: clamp(22px, 2.6vw, 30px); }
+.trick-offer-card strong { font-size: 19px; }
+.trick-panel-header h2 { margin: 2px 0 14px; font-size: 21px; }
+.section-heading h2 { font-size: 18px; }
+.showdown-banner h2 { font-size: 18px; }
+
+/* Calmer surfaces: smaller radii, no decorative inner frames. */
+.setup-rules, .setup-players, .room-code-banner, .trick-selection-main, .showdown-banner, .action-bar { border-radius: var(--ui-radius-lg); }
+.table-header, .trick-offer-card, .trick-owned-card { border-radius: var(--ui-radius); }
+.trick-offer-card::before { display: none; }
+
+/* Rarity is carried by one tinted edge and a faint wash, not rays or double frames. */
+.trick-offer-card[class*='rarity-'] {
+  background: linear-gradient(160deg, color-mix(in srgb, var(--rarity) 15%, #131b1e), #10171a 72%);
+  border: 1px solid color-mix(in srgb, var(--rarity) 55%, transparent);
+  box-shadow: inset 0 3px 0 var(--rarity), 0 8px 22px #0006;
+}
+.trick-offer-card[class*='rarity-']:hover:not(:disabled) { border-color: var(--rarity); box-shadow: inset 0 3px 0 var(--rarity), 0 0 0 1px var(--rarity), 0 10px 26px #0008; }
+
+/* Candidate card: rarity and type read as one quiet meta line. */
+.trick-card-meta { display: flex; align-items: center; gap: 8px; }
+.trick-card-meta .trick-card-kind { padding-left: 8px; border-left: 1px solid color-mix(in srgb, var(--rarity) 40%, transparent); color: var(--muted); letter-spacing: .04em; }
+.trick-card-select { color: var(--rarity); font-weight: 600; }
+.trick-card-description { max-width: none; }
+
+/* Table header: hand counter sits beside the street badge. */
+.table-hand-count { color: var(--text); font-weight: 600; white-space: nowrap; }
+.table-tools-divider { display: none; }
+
+/* Seat badges sit on the info card's corner instead of covering hole cards. */
+
+/* Pot is a single-line pill tucked directly under the board. */
+.pot {
+  top: calc(42% + 43px);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+  padding: 4px 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.pot-fly { top: calc(42% + 55px); }
+.pot span { display: inline; font-size: 11px; letter-spacing: .08em; color: var(--muted); }
+.pot strong { display: inline; margin: 0; font-size: 16px; }
+
+/* Action bar: raise sizing opens on demand, like a desktop poker client. */
+.action-heading > div { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.action-heading > span { color: var(--muted); }
+.action-heading > span b { color: var(--text); font-weight: 700; }
+.action-heading > div .hand-rank-badge { position: static; padding: 3px 10px; color: #1a1a10; font-size: 11px; box-shadow: none; }
+.action-buttons > button { flex: 1 1 0; min-width: 0; }
+.action-buttons > button.raise-toggle.active { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 26%, var(--panel)); }
+.raise-summary { display: flex; justify-content: space-between; align-items: baseline; }
+
+.setup-actions .primary { justify-content: center; text-align: center; }
+
+@media (orientation: portrait) and (max-width: 720px) {
+  .pot { top: calc(42% + 36px); }
+  .table-felt.crowded .pot { top: calc(50% + 36px); }
+  .pot-fly { top: calc(42% + 48px); }
+  .table-felt.crowded .pot-fly { top: calc(50% + 48px); }
+  .pot strong { font-size: 15px; }
+  .table-felt:not(.crowded) { min-height: 440px; }
+  .action-bar { padding: 12px; }
+  .action-buttons > button { padding-left: 4px; padding-right: 4px; font-size: 14px; }
+}
+
+/* Nameplates: the art sits under a scrim so names and chip counts stay readable. */
+.seat-info.has-nameplate {
+  background: linear-gradient(#08101a80, #08101a80), var(--nameplate) center / cover;
+  border-color: color-mix(in srgb, var(--nameplate-accent) 62%, transparent);
+}
+.seat.acting .seat-info.has-nameplate { border-color: var(--accent); }
+.player-list li.has-nameplate {
+  background: linear-gradient(90deg, #08101ad1 0%, #08101a94 55%, #08101a52 100%), var(--nameplate) center / cover;
+  border-color: color-mix(in srgb, var(--nameplate-accent) 45%, transparent);
+}
+.nameplate-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.nameplate-option { display: grid; gap: 7px; padding: 7px 7px 9px; border: 1px solid transparent; border-radius: var(--ui-radius); background: #0000002e; color: var(--text); font-size: 12px; cursor: pointer; transition: border-color .15s ease, background .15s ease; }
+.nameplate-option:hover { border-color: var(--panel-edge); }
+.nameplate-option.active { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); box-shadow: inset 0 0 0 1px var(--accent); }
+.nameplate-option:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.nameplate-swatch { display: block; aspect-ratio: 3 / 1; border: 1px solid var(--panel-edge); border-radius: 8px; background: color-mix(in srgb, var(--panel) 80%, #0b1a20); }
+.nameplate-swatch.has-nameplate { background: var(--nameplate) center / cover; border-color: color-mix(in srgb, var(--nameplate-accent) 50%, transparent); }
+
+@media (orientation: portrait) and (max-width: 640px) {
+  .nameplate-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 250">
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".42" r=".8"><stop stop-color="#2f7c61"/><stop offset="1" stop-color="#0f3a2c"/></radialGradient>
+    <radialGradient id="disc" cx=".38" cy=".32" r=".85"><stop stop-color="#e3f6e6"/><stop offset=".55" stop-color="#9fd3b3"/><stop offset="1" stop-color="#4f9a78"/></radialGradient>
+    <mask id="ring"><rect width="180" height="250" fill="#000"/><circle cx="90" cy="125" r="52" fill="#fff"/><circle cx="90" cy="125" r="17" fill="#000"/></mask>
+    <circle id="grain" r="2.6" fill="#5ea784"/>
+  </defs>
+  <rect width="180" height="250" rx="15" fill="url(#bg)"/>
+  <path d="M22 60c30-12 52 8 80-4s46-6 56 4M22 196c28 10 54-10 82 2s44 6 54-4" fill="none" stroke="#bfe6cc" stroke-opacity=".14" stroke-width="10" stroke-linecap="round"/>
+  <g mask="url(#ring)">
+    <rect width="180" height="250" fill="url(#disc)"/>
+    <circle cx="90" cy="125" r="46" fill="none" stroke="#3f8768" stroke-opacity=".55" stroke-width="1.5"/>
+    <circle cx="90" cy="125" r="24" fill="none" stroke="#3f8768" stroke-opacity=".55" stroke-width="1.5"/>
+    <g>
+      <use href="#grain" x="90" y="89"/><use href="#grain" x="108" y="94"/><use href="#grain" x="121" y="107"/><use href="#grain" x="126" y="125"/>
+      <use href="#grain" x="121" y="143"/><use href="#grain" x="108" y="156"/><use href="#grain" x="90" y="161"/><use href="#grain" x="72" y="156"/>
+      <use href="#grain" x="59" y="143"/><use href="#grain" x="54" y="125"/><use href="#grain" x="59" y="107"/><use href="#grain" x="72" y="94"/>
+      <use href="#grain" x="99" y="104"/><use href="#grain" x="111" y="116"/><use href="#grain" x="111" y="134"/><use href="#grain" x="99" y="146"/>
+      <use href="#grain" x="81" y="146"/><use href="#grain" x="69" y="134"/><use href="#grain" x="69" y="116"/><use href="#grain" x="81" y="104"/>
+    </g>
+  </g>
+  <path d="M60 96a42 42 0 0 1 36-24" fill="none" stroke="#fff" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="90" cy="125" r="52" fill="none" stroke="#2e7054" stroke-width="2"/>
+  <path d="M90 30v20M90 200v20" stroke="#d7c27d" stroke-width="2"/>
+  <path d="M90 46c-6 0-9 5-9 9h18c0-4-3-9-9-9zM90 204c-6 0-9-5-9-9h18c0 4-3 9-9 9z" fill="#d7c27d"/>
+  <rect x="9" y="9" width="162" height="232" rx="9" fill="none" stroke="#d7c27d" stroke-width="3.5"/>
+  <rect x="17" y="17" width="146" height="216" rx="6" fill="none" stroke="#bfe6cc" stroke-opacity=".4" stroke-width="1.2"/>
+</svg>

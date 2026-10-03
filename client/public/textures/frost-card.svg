@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 250">
+  <defs>
+    <radialGradient id="bg" cx=".5" cy=".48" r=".75"><stop stop-color="#4a93c0"/><stop offset=".6" stop-color="#1f5b86"/><stop offset="1" stop-color="#0c2441"/></radialGradient>
+    <clipPath id="inner"><rect x="9" y="9" width="162" height="232" rx="9"/></clipPath>
+    <g id="arm" stroke="#effaff" stroke-width="4.2" stroke-linecap="round" fill="none">
+      <path d="M0 0V-50"/><path d="M0-18l-11-11M0-18l11-11"/><path d="M0-33l-8-8M0-33l8-8"/><path d="M0-44l-5-4M0-44l5-4"/>
+    </g>
+    <g id="flake"><use href="#arm"/><use href="#arm" transform="rotate(60)"/><use href="#arm" transform="rotate(120)"/><use href="#arm" transform="rotate(180)"/><use href="#arm" transform="rotate(240)"/><use href="#arm" transform="rotate(300)"/></g>
+  </defs>
+  <rect width="180" height="250" rx="15" fill="url(#bg)"/>
+  <g clip-path="url(#inner)">
+    <g fill="#d8f3ff" opacity=".22">
+      <path d="M9 9h44L9 60z"/><path d="M9 9h22l-8 30z" opacity=".8"/><path d="M171 9h-44l44 51z"/><path d="M171 241h-44l44-51z"/><path d="M9 241h44L9 190z"/>
+    </g>
+    <circle cx="90" cy="125" r="60" fill="#bfeaff" opacity=".12"/>
+    <use href="#flake" transform="translate(90 125)"/>
+    <polygon points="90,111 102,118 102,132 90,139 78,132 78,118" fill="#1f5b86" stroke="#effaff" stroke-width="3"/>
+    <g opacity=".7" transform="scale(.28)"><use href="#flake" transform="translate(140 170)"/><use href="#flake" transform="translate(500 760)"/></g>
+    <g fill="#fff"><circle cx="42" cy="90" r="1.6"/><circle cx="140" cy="180" r="1.4"/><circle cx="132" cy="60" r="1.2"/><circle cx="46" cy="178" r="1.2"/></g>
+  </g>
+  <rect x="9" y="9" width="162" height="232" rx="9" fill="none" stroke="#c8f0fb" stroke-width="3.5"/>
+  <rect x="17" y="17" width="146" height="216" rx="6" fill="none" stroke="#c8f0fb" stroke-opacity=".4" stroke-width="1.2"/>
+</svg>

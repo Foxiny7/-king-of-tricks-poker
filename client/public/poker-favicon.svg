@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>千王之王2026 扑克牌</title>
+  <rect width="64" height="64" rx="14" fill="#10352c"/>
+  <g transform="rotate(-14 24 32)">
+    <rect x="9" y="10" width="32" height="44" rx="4" fill="#173d38" stroke="#ddb76d" stroke-width="2"/>
+    <rect x="13" y="14" width="24" height="36" rx="2" fill="none" stroke="#ddb76d" stroke-width="1.5"/>
+    <path d="M25 23 20 32l5 9 5-9z" fill="#ddb76d"/>
+  </g>
+  <g>
+    <rect x="25" y="7" width="32" height="45" rx="4" fill="#fff3d8" stroke="#d2a95f" stroke-width="2"/>
+    <text x="29" y="19" fill="#17312b" font-family="Georgia, serif" font-size="11" font-weight="bold">A</text>
+    <path d="M41 20C38 24 32 29 32 34c0 4 4 6 9 3l-2 7h10l-2-7c5 3 9 1 9-3 0-5-6-10-9-14l-3-5z" fill="#17312b"/>
+  </g>
+</svg>

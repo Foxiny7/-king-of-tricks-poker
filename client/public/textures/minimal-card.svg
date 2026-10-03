@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 250">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b2233"/><stop offset="1" stop-color="#0b0e16"/></linearGradient>
+    <clipPath id="inner"><rect x="9" y="9" width="162" height="232" rx="9"/></clipPath>
+    <path id="spade" d="M0-22C7-11 24-3 18 10 14 19 5 17 2 12c1 7 4 11 9 13H-11c5-2 8-6 9-13-3 5-12 7-16-2-6-13 11-21 18-32z"/>
+  </defs>
+  <rect width="180" height="250" rx="15" fill="url(#bg)"/>
+  <g clip-path="url(#inner)">
+    <path d="M9 250 171 88v162z" fill="#4fd7c1" opacity=".1"/>
+    <path d="M9 9h162L9 171z" fill="#ff5d6c" opacity=".08"/>
+  </g>
+  <rect x="9" y="9" width="162" height="232" rx="9" fill="none" stroke="#eef3ee" stroke-width="3"/>
+  <circle cx="90" cy="125" r="50" fill="none" stroke="#4fd7c1" stroke-width="7"/>
+  <circle cx="90" cy="125" r="38" fill="#10141f"/>
+  <use href="#spade" transform="translate(90 123) scale(1.18)" fill="#eef3ee"/>
+  <g fill="#ff5d6c"><circle cx="90" cy="67" r="5"/><circle cx="90" cy="183" r="5"/><circle cx="32" cy="125" r="5"/><circle cx="148" cy="125" r="5"/></g>
+  <g fill="#ffb545"><rect x="25" y="25" width="14" height="4" rx="2"/><rect x="25" y="25" width="4" height="14" rx="2"/><rect x="141" y="221" width="14" height="4" rx="2"/><rect x="151" y="211" width="4" height="14" rx="2"/></g>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#1d4a7c"/><stop offset="1" stop-color="#0e2442"/></linearGradient>
+    <pattern id="seigaiha" width="28" height="14" patternUnits="userSpaceOnUse">
+      <g fill="#153862" stroke="#e8eef4" stroke-opacity=".5" stroke-width="1.4">
+        <circle cx="0" cy="14" r="13"/><circle cx="28" cy="14" r="13"/><circle cx="14" cy="21" r="13"/>
+        <circle cx="0" cy="14" r="8" fill="none"/><circle cx="28" cy="14" r="8" fill="none"/><circle cx="14" cy="21" r="8" fill="none"/>
+      </g>
+    </pattern></defs>
+
+  <rect width="300" height="100" fill="url(#bg)"/>
+  <rect width="300" height="100" fill="url(#seigaiha)" opacity=".65"/>
+  <rect width="300" height="100" fill="url(#bg)" opacity=".45"/>
+  <circle cx="246" cy="30" r="12" fill="#c8402e" opacity=".9"/>
+</svg>

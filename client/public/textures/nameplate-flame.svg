@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#1a0a0a"/><stop offset="1" stop-color="#4a1410"/></linearGradient>
+    <linearGradient id="fire" x2="0" y2="1"><stop stop-color="#ffd27a"/><stop offset=".5" stop-color="#ff7a24"/><stop offset="1" stop-color="#c2331a"/></linearGradient></defs>
+
+  <rect width="300" height="100" fill="url(#bg)"/>
+  <path d="M0 100V78c10-8 12-22 20-30 2 12 10 16 12 28 6-14 14-20 14-36 10 12 16 28 14 40 6-8 10-18 18-22-2 12 6 18 6 30 8-10 12-26 22-34 4 14 12 22 10 36 8-8 12-20 20-26 0 12 8 20 6 30 8-12 16-20 16-34 10 12 14 26 12 38 6-6 10-16 18-20-2 12 4 20 4 28 8-10 14-24 22-30 4 14 10 22 8 34 8-8 12-18 20-24 0 12 6 18 4 28 8-8 12-18 16-28V100z" fill="url(#fire)" opacity=".9"/>
+  <path d="M0 100V88c12-6 16-14 22-20 2 10 8 12 10 20 8-10 14-12 18-24 6 10 10 18 10 26 6-6 12-12 16-16 2 10 6 14 8 20 8-8 12-16 18-22 4 10 8 16 8 24 8-6 12-14 18-18 2 8 6 14 6 20 8-8 14-14 18-22 6 10 8 18 8 26 6-6 10-12 16-14 0 8 4 12 4 18 8-8 12-16 16-22 4 10 8 16 6 24 8-6 12-12 16-16 2 8 4 12 4 18 6-6 10-12 14-18V100z" fill="#ffe29a" opacity=".55"/>
+  <g fill="#ffb24a"><circle cx="60" cy="24" r="1.6"/><circle cx="140" cy="14" r="1.4"/><circle cx="210" cy="28" r="1.8"/><circle cx="260" cy="12" r="1.2"/><circle cx="100" cy="36" r="1.2"/></g>
+</svg>

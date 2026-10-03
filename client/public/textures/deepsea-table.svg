@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sea" x2="0" y2="1"><stop stop-color="#1f7f96"/><stop offset=".45" stop-color="#0f4a64"/><stop offset="1" stop-color="#051726"/></linearGradient>
+    <linearGradient id="ray" x2="0" y2="1"><stop stop-color="#bff6ff" stop-opacity=".35"/><stop offset="1" stop-color="#bff6ff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="kelp" x2="0" y2="1"><stop stop-color="#3f8a5a"/><stop offset="1" stop-color="#123b2c"/></linearGradient>
+    <linearGradient id="rock" x2="0" y2="1"><stop stop-color="#1c3b4a"/><stop offset="1" stop-color="#07151f"/></linearGradient>
+  </defs>
+  <rect width="1200" height="640" fill="url(#sea)"/>
+  <path d="M0 30c100-12 200 12 300 0s200-14 300 0 200 12 300 0 200-14 300 0" fill="none" stroke="#dffaff" stroke-opacity=".25" stroke-width="4"/>
+  <g fill="url(#ray)">
+    <path d="M180 0h60l120 460h-40zM420 0h40l60 420h-30zM700 0h60l20 440h-40zM920 0h50l-40 420h-30zM1080 0h40l-120 460h-30z"/>
+  </g>
+  <g fill="#0c2f45" opacity=".75" transform="translate(760 170)">
+    <path d="M0 0c40-20 110-22 160 4 20-12 40-14 50-6-8 8-10 20-4 34-12 2-30-4-46-14-50 26-120 20-160-18z"/>
+  </g>
+  <g fill="#0a2a3d" opacity=".8">
+    <path d="M320 250l12-6 14 6-14 6zM352 240l10-5 12 5-12 5zM340 266l10-5 12 5-12 5zM372 256l9-4 11 4-11 4zM302 236l9-4 11 4-11 4z"/>
+  </g>
+  <g fill="#dffaff" opacity=".5"><circle cx="150" cy="420" r="5"/><circle cx="160" cy="380" r="3.5"/><circle cx="144" cy="340" r="2.5"/><circle cx="1060" cy="440" r="5"/><circle cx="1050" cy="398" r="3.5"/><circle cx="1066" cy="360" r="2.5"/><circle cx="620" cy="300" r="2.5"/></g>
+  <path d="M0 520c100-40 180-30 260-10s160 40 240 20 200-40 300-20 180 30 260 10 100-20 140-16v136H0z" fill="url(#rock)"/>
+  <g fill="none" stroke="url(#kelp)" stroke-width="12" stroke-linecap="round">
+    <path d="M60 640c-20-80 30-140 0-220s20-120 0-190"/><path d="M110 640c20-70-20-120 10-190s-10-110 10-160"/>
+    <path d="M1100 640c20-80-30-140 0-220s-20-120 0-180"/><path d="M1150 640c-20-70 20-120-10-190s10-100-10-150"/>
+  </g>
+  <g fill="#e2725b"><path d="M300 560c-10-30 10-50 0-80 16 12 20 30 14 44 10-16 26-20 36-12-18 8-24 30-20 48z"/><path d="M880 580c-8-24 8-40 0-64 12 10 16 24 12 36 8-12 20-16 28-10-14 6-18 24-16 38z"/></g>
+  <g fill="#e6b85c"><circle cx="520" cy="590" r="10"/><circle cx="540" cy="596" r="7"/><circle cx="740" cy="600" r="8"/></g>
+</svg>

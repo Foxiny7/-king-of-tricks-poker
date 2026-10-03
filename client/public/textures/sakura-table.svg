@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#121b3a"/><stop offset=".54" stop-color="#4e3b72"/><stop offset="1" stop-color="#b6678a"/></linearGradient>
+    <radialGradient id="moon"><stop stop-color="#fff9df"/><stop offset=".68" stop-color="#f9e2d6"/><stop offset="1" stop-color="#f6b9cf" stop-opacity=".1"/></radialGradient>
+    <linearGradient id="water" x2="0" y2="1"><stop stop-color="#503b69"/><stop offset="1" stop-color="#15253e"/></linearGradient>
+    <g id="flower" fill="#f7a7c9"><ellipse rx="5" ry="11" transform="rotate(0) translate(0 -9)"/><ellipse rx="5" ry="11" transform="rotate(72) translate(0 -9)"/><ellipse rx="5" ry="11" transform="rotate(144) translate(0 -9)"/><ellipse rx="5" ry="11" transform="rotate(216) translate(0 -9)"/><ellipse rx="5" ry="11" transform="rotate(288) translate(0 -9)"/><circle r="3" fill="#ffdf9b"/></g>
+  </defs>
+  <rect width="1200" height="640" fill="url(#sky)"/>
+  <circle cx="267" cy="150" r="137" fill="url(#moon)" opacity=".58"/><circle cx="267" cy="150" r="65" fill="#fff1de"/>
+  <g fill="#fce9ef" opacity=".65"><circle cx="91" cy="93" r="2"/><circle cx="478" cy="64" r="2"/><circle cx="680" cy="101" r="1.5"/><circle cx="892" cy="74" r="2"/><circle cx="1038" cy="166" r="1.5"/><path d="M765 53v12m-6-6h12M562 132v10m-5-5h10" stroke="#fce9ef" stroke-width="2"/></g>
+  <path d="M0 279q118-34 241 0t248-11q117-41 239-5t240 5V0H0z" fill="#a684af" opacity=".06"/>
+  <path d="M0 318q137-61 247-9t233-9q99-46 221-7t244-11q119-35 255 4v101H0z" fill="#402e60"/>
+  <path d="M0 365q91-59 190-33t216-6q127-47 250 8t232-2q138-44 312 24v63H0z" fill="#2e3056"/>
+  <g fill="#1e2948">
+    <path d="M0 347h64v-34h54v-64h57v98h46v-45h53v45h49v75H0zM866 351h56v-47h43v-77h55v124h35v-39h66v39h79v73H866z"/>
+    <path d="M90 295h62l-31-28zM943 275h100l-50-30z" fill="#253150"/>
+  </g>
+  <g fill="#f7cc9e" opacity=".5"><rect x="82" y="330" width="5" height="7"/><rect x="139" y="283" width="5" height="8"/><rect x="242" y="321" width="5" height="8"/><rect x="949" y="324" width="5" height="7"/><rect x="990" y="263" width="5" height="7"/><rect x="1088" y="331" width="5" height="8"/></g>
+  <path d="M0 414q177-24 365 8t407-1q209-27 428 2v217H0z" fill="url(#water)"/>
+  <g stroke="#ecbad2" stroke-linecap="round" opacity=".38"><path d="M45 455h95m92 12h130m114-20h80m103 27h130m90-16h175M23 532h205m103-25h99m150 32h216m47-40h137m93 40h74" stroke-width="3"/><path d="M174 480h64m505 20h100m190 17h72" stroke-width="1.5"/></g>
+  <g fill="none" stroke="#231f42" stroke-linecap="round" stroke-linejoin="round"><path d="M0 9q76 44 116 68t73 91m-90-95q54-6 118 12m-39 41q30-8 72 3M1200 4q-72 56-136 73t-111 95m101-97q-28-16-76-18m-4 79q-33-13-82-1" stroke-width="15"/><path d="M112 85q28 39 33 98M1083 70q-34 46-39 103" stroke-width="8"/></g>
+  <g opacity=".95"><use href="#flower" transform="translate(75 52) scale(1.25)"/><use href="#flower" transform="translate(155 97) scale(.8)"/><use href="#flower" transform="translate(228 85) scale(1.1)"/><use href="#flower" transform="translate(181 135) scale(.7)"/><use href="#flower" transform="translate(1061 82) scale(1.2)"/><use href="#flower" transform="translate(981 64) scale(.85)"/><use href="#flower" transform="translate(918 139) scale(1.1)"/><use href="#flower" transform="translate(1094 154) scale(.75)"/></g>
+  <g fill="#f5bed4" opacity=".8"><ellipse cx="386" cy="211" rx="8" ry="4" transform="rotate(-27 386 211)"/><ellipse cx="724" cy="176" rx="7" ry="4" transform="rotate(32 724 176)"/><ellipse cx="811" cy="419" rx="8" ry="4" transform="rotate(-18 811 419)"/><ellipse cx="344" cy="513" rx="7" ry="4" transform="rotate(21 344 513)"/></g>
+</svg>

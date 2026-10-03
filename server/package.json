@@ -1,0 +1,17 @@
+{
+  "name": "poker-server",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.8.1",
+    "pokersolver": "^2.1.4",
+    "nanoid": "^5.0.7"
+  }
+}

@@ -1,0 +1,297 @@
+/* The local hand is a viewport-bottom layer; opponents still sit on the felt. */
+.table-view { position: relative; --pov-height: 246px; }
+.table-view > .seat.mine {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 50%;
+  width: min(420px, 100%);
+  height: var(--pov-height);
+  transform: translateX(-50%);
+  z-index: 11;
+  padding: 0;
+  outline: none;
+}
+
+.table-view > .seat.mine.holding-cards .seat-cards {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  padding-top: 12px;
+  perspective: none;
+  transform-origin: 50% 100%;
+  animation: povIdle 5.8s ease-in-out 1.7s infinite;
+}
+.table-view > .seat.mine.holding-cards .seat-cards:focus-within,
+.table-view > .seat.mine.holding-cards .seat-cards:hover { animation-play-state: paused; }
+
+.pov-hand-art {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  aspect-ratio: 3 / 2;
+  background: var(--hand-art, url('/images/pov-hands-v3.png')) center bottom / 100% auto no-repeat;
+  transform-origin: 50% 100%;
+  pointer-events: none;
+}
+/* The idle sway lives only on .seat-cards, which holds the cards and all four hand layers, so cards,
+   palms and thumbs always move as one (pausing on hover included). The layers themselves only share
+   the same entrance, so the front and back halves of one texture never drift apart. */
+.seat.mine .pov-hand-art {
+  animation: povCatch 1.25s cubic-bezier(.18,.8,.25,1) .45s backwards;
+}
+.pov-hand-back { z-index: 1; }
+.pov-hand-back-left { clip-path: inset(0 50% 0 0); }
+.pov-hand-back-right { clip-path: inset(0 0 0 50%); }
+.pov-hand-back-left, .pov-hand-left { translate: 1.5% 0; }
+.pov-hand-back-right, .pov-hand-right { translate: -1.5% 0; }
+.pov-hand-front { z-index: 4; }
+.pov-hand-left {
+  clip-path: polygon(24% 69%, 25% 60%, 32% 53%, 37% 47%, 41% 43%, 44% 42%, 44% 47%, 41% 53%, 34% 61%, 29% 69%);
+}
+.pov-hand-right {
+  clip-path: polygon(76% 69%, 75% 60%, 68% 53%, 63% 47%, 59% 43%, 56% 42%, 56% 47%, 59% 53%, 66% 61%, 71% 69%);
+}
+
+/* 学院侦探: the front layer keeps the back of the hand, the ring and the thumb; the index finger and the
+   curled fingers stay behind the card. The right hand has no ring, so its index finger is split off at
+   the same place. The hands sit out far enough that the card edge slides into the fist: the ring and the
+   index knuckle show outside it and the finger wraps behind, instead of the edge cutting the finger right
+   after the ring, which looked like the finger was poked into the card. */
+.table-view[data-hand-style='detective'] :is(.pov-hand-back-left, .pov-hand-left) { translate: -8% 0; }
+.table-view[data-hand-style='detective'] :is(.pov-hand-back-right, .pov-hand-right) { translate: 8% 0; }
+.hand-style-preview[data-hand-style='detective'] :is(.pov-hand-back-left, .pov-hand-left) { translate: -4% 0; }
+.hand-style-preview[data-hand-style='detective'] :is(.pov-hand-back-right, .pov-hand-right) { translate: 4% 0; }
+:is(.table-view, .hand-style-preview)[data-hand-style='detective'] .pov-hand-left {
+  clip-path: polygon(44.60% 32.71%, 43.42% 32.32%, 42.25% 32.71%, 41.34% 33.40%, 38.28% 37.11%, 34.83% 42.58%, 32.49% 44.82%, 31.25% 43.95%, 30.14% 42.48%, 30.27% 41.99%, 30.99% 41.50%, 30.79% 39.65%, 31.77% 39.06%, 31.97% 36.33%, 31.45% 36.23%, 31.05% 35.25%, 30.66% 32.91%, 30.01% 31.93%, 30.27% 31.64%, 30.21% 31.25%, 28.19% 32.32%, 27.21% 33.59%, 26.50% 34.08%, 26.37% 34.57%, 25.13% 35.16%, 24.22% 36.13%, 23.89% 37.60%, 23.89% 40.04%, 23.50% 41.21%, 23.31% 42.77%, 23.76% 44.73%, 21.81% 52.34%, 21.35% 53.03%, 20.57% 56.05%, 19.92% 57.71%, 18.23% 60.74%, 17.06% 61.04%, 16.47% 61.52%, 13.80% 67.29%, 11.91% 68.55%, 7.81% 77.44%, 6.45% 78.81%, 5.73% 81.15%, 0.00% 88.67%, 0.00% 99.90%, 19.92% 99.90%, 20.57% 96.19%, 21.09% 94.73%, 26.56% 84.47%, 26.69% 83.50%, 25.98% 81.35%, 25.98% 80.76%, 28.71% 73.63%, 28.52% 72.46%, 26.76% 68.36%, 27.99% 65.43%, 29.95% 63.57%, 30.08% 62.70%, 28.71% 61.52%, 27.67% 61.23%, 27.54% 60.74%, 28.39% 59.86%, 30.34% 58.69%, 32.49% 56.35%, 33.46% 56.64%, 33.92% 56.05%, 34.31% 55.08%, 34.44% 53.12%, 35.35% 52.25%, 35.16% 51.17%, 36.85% 48.93%, 37.83% 46.88%, 39.45% 44.34%, 42.64% 40.33%, 44.01% 37.79%, 44.99% 34.77%, 44.99% 33.79%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='detective'] .pov-hand-right {
+  clip-path: polygon(55.66% 32.81%, 56.32% 32.32%, 57.42% 32.42%, 59.18% 33.59%, 61.78% 36.82%, 65.36% 42.48%, 67.77% 44.92%, 69.27% 43.65%, 70.12% 42.29%, 69.53% 41.89%, 69.21% 41.21%, 69.40% 40.04%, 69.21% 38.38%, 71.68% 33.59%, 72.46% 33.50%, 75.07% 35.16%, 75.98% 36.13%, 76.24% 36.91%, 76.56% 41.21%, 76.30% 41.99%, 76.50% 44.92%, 78.06% 51.17%, 78.78% 52.54%, 79.56% 55.86%, 80.60% 58.50%, 81.97% 60.74%, 83.14% 61.04%, 83.72% 61.62%, 85.81% 66.31%, 86.20% 66.89%, 87.50% 67.77%, 91.54% 76.66%, 93.36% 78.22%, 93.75% 78.91%, 94.47% 81.45%, 100.00% 88.67%, 100.00% 99.90%, 79.10% 99.90%, 78.91% 97.56%, 78.52% 96.48%, 72.72% 85.64%, 72.85% 84.57%, 74.09% 81.25%, 74.09% 80.66%, 71.68% 74.61%, 71.42% 73.14%, 73.31% 68.95%, 73.37% 68.16%, 72.40% 65.82%, 71.74% 64.84%, 70.31% 63.67%, 70.12% 62.70%, 70.64% 62.21%, 73.18% 62.21%, 73.37% 61.52%, 72.27% 60.25%, 71.35% 60.16%, 70.77% 59.18%, 67.51% 56.54%, 67.06% 55.76%, 66.21% 55.27%, 66.41% 53.71%, 65.49% 52.15%, 65.43% 50.98%, 64.65% 51.07%, 63.87% 50.00%, 61.91% 46.00%, 58.79% 41.99%, 56.05% 37.30%, 55.34% 34.86%, 55.34% 33.69%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='diviner'] .pov-hand-left {
+  clip-path: polygon(18.55% 62.99%, 18.95% 48.24%, 23.05% 44.73%, 25.26% 42.19%, 27.34% 41.80%, 29.23% 40.43%, 31.32% 38.28%, 33.53% 36.04%, 35.22% 34.67%, 36.98% 34.18%, 37.96% 34.86%, 38.41% 36.04%, 38.09% 37.50%, 36.52% 39.55%, 34.57% 41.80%, 32.88% 43.95%, 31.25% 46.78%, 30.14% 49.32%, 28.91% 52.05%, 27.41% 54.39%, 25.39% 56.54%, 24.28% 59.28%, 23.63% 62.79%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='diviner'] .pov-hand-right {
+  clip-path: polygon(81.45% 62.99%, 81.05% 48.24%, 76.95% 44.73%, 74.74% 42.19%, 72.66% 41.80%, 70.77% 40.43%, 68.68% 38.28%, 66.47% 36.04%, 64.78% 34.67%, 63.02% 34.18%, 62.04% 34.86%, 61.59% 36.04%, 61.91% 37.50%, 63.48% 39.55%, 65.43% 41.80%, 67.12% 43.95%, 68.75% 46.78%, 69.86% 49.32%, 71.09% 52.05%, 72.59% 54.39%, 74.61% 56.54%, 75.72% 59.28%, 76.37% 62.79%);
+}
+/* 赛博骇客: the front layer keeps the whole gloved back of the hand, the thumb and the wrist, so only the
+   fingers go behind the card; traced from the texture's glove and thumb outlines. The hands sit further
+   out so the thumbs grip the outer third of each card instead of meeting in the middle. */
+.table-view[data-hand-style='hacker'] :is(.pov-hand-back-left, .pov-hand-left) { translate: -12% 0; }
+.table-view[data-hand-style='hacker'] :is(.pov-hand-back-right, .pov-hand-right) { translate: 12% 0; }
+/* the 藏品 thumbnail's cards are much narrower, so a smaller shift keeps the thumbs on them */
+.hand-style-preview[data-hand-style='hacker'] :is(.pov-hand-back-left, .pov-hand-left) { translate: -5% 0; }
+.hand-style-preview[data-hand-style='hacker'] :is(.pov-hand-back-right, .pov-hand-right) { translate: 5% 0; }
+:is(.table-view, .hand-style-preview)[data-hand-style='hacker'] .pov-hand-left {
+  clip-path: polygon(46.88% 39.16%, 46.35% 38.77%, 45.70% 38.77%, 43.10% 40.14%, 41.60% 41.80%, 38.93% 46.29%, 36.59% 47.85%, 36.07% 47.66%, 35.94% 46.19%, 36.46% 45.21%, 36.52% 43.16%, 36.91% 42.19%, 36.91% 40.72%, 36.46% 39.16%, 35.48% 37.89%, 34.51% 37.30%, 33.92% 37.40%, 30.99% 39.65%, 27.86% 41.21%, 27.15% 43.95%, 25.98% 45.70%, 25.72% 46.58%, 25.26% 54.20%, 24.74% 57.71%, 24.02% 60.74%, 23.70% 61.23%, 21.81% 62.50%, 18.75% 68.95%, 18.68% 71.48%, 14.97% 77.15%, 10.61% 84.28%, 8.33% 86.91%, 6.77% 88.28%, 3.52% 92.87%, 0.00% 99.02%, 0.00% 99.90%, 21.22% 99.90%, 23.11% 91.02%, 24.93% 84.77%, 26.04% 82.62%, 27.34% 78.81%, 27.60% 78.52%, 28.91% 78.32%, 29.62% 77.44%, 32.03% 71.58%, 32.10% 70.21%, 31.90% 69.14%, 33.46% 66.99%, 34.11% 65.14%, 36.65% 62.30%, 38.54% 59.18%, 40.76% 52.93%, 41.47% 51.46%, 41.67% 50.29%, 42.71% 48.44%, 45.90% 44.14%, 46.68% 42.58%, 47.14% 40.62%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='hacker'] .pov-hand-right {
+  clip-path: polygon(53.06% 39.36%, 53.65% 38.77%, 54.30% 38.77%, 56.84% 40.04%, 58.07% 41.31%, 60.87% 46.00%, 63.41% 47.85%, 64.00% 47.66%, 64.06% 46.19%, 63.54% 44.92%, 63.54% 43.16%, 63.15% 42.38%, 63.09% 41.31%, 63.48% 39.45%, 64.45% 37.99%, 65.56% 37.30%, 66.15% 37.40%, 69.01% 39.65%, 72.07% 41.11%, 72.53% 42.09%, 72.92% 44.04%, 74.28% 46.29%, 74.80% 54.30%, 75.26% 57.52%, 76.04% 60.74%, 78.26% 62.50%, 81.32% 68.95%, 81.38% 71.48%, 89.97% 84.57%, 94.08% 89.26%, 96.68% 93.07%, 100.00% 98.93%, 100.00% 99.90%, 78.78% 99.90%, 75.13% 84.86%, 73.96% 82.52%, 72.66% 78.71%, 71.16% 78.32%, 70.51% 77.54%, 67.97% 71.39%, 68.16% 69.04%, 66.60% 66.99%, 65.76% 64.84%, 63.54% 62.50%, 61.72% 59.57%, 59.31% 52.93%, 58.59% 51.46%, 58.40% 50.20%, 54.95% 45.41%, 53.45% 42.77%, 52.93% 40.72%);
+}
+
+/* 学级裁判, 巫女, 暗黑哥特, 地雷系 (Codex prototypes): the front layer is the thumb, the lower palm, the wrist
+   and the whole cuff; the index finger that wraps the card's outer edge and the curled fingers stay
+   behind. Traced from each texture (left and right separately), snapped out to the ink outline. */
+:is(.table-view, .hand-style-preview)[data-hand-style='verdict'] .pov-hand-left {
+  clip-path: polygon(36.39% 41.60%, 35.94% 41.21%, 35.55% 41.31%, 33.59% 42.87%, 32.42% 44.63%, 31.45% 46.97%, 30.92% 47.36%, 29.56% 50.39%, 29.56% 50.98%, 28.06% 53.32%, 26.56% 54.20%, 24.80% 57.03%, 20.44% 57.13%, 20.12% 57.42%, 19.73% 64.75%, 19.08% 68.07%, 17.58% 72.36%, 17.25% 72.75%, 15.76% 73.14%, 14.58% 75.39%, 11.59% 82.91%, 10.48% 86.13%, 11.00% 89.55%, 7.81% 99.90%, 26.69% 99.90%, 25.91% 94.82%, 26.89% 91.31%, 27.08% 88.38%, 28.26% 83.11%, 26.89% 80.08%, 24.87% 76.66%, 24.87% 76.17%, 26.69% 69.14%, 29.04% 65.33%, 29.95% 62.21%, 30.47% 61.62%, 31.45% 57.52%, 32.49% 54.59%, 33.79% 51.86%, 33.85% 50.78%, 36.33% 45.90%, 36.98% 42.68%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='verdict'] .pov-hand-right {
+  clip-path: polygon(63.54% 41.60%, 64.32% 41.21%, 66.47% 42.97%, 67.51% 44.53%, 68.42% 46.68%, 68.88% 47.07%, 70.38% 50.29%, 70.38% 50.88%, 71.94% 53.32%, 73.31% 54.10%, 75.20% 57.03%, 79.56% 57.13%, 79.82% 57.42%, 80.27% 64.84%, 80.86% 67.87%, 82.29% 72.07%, 82.55% 72.46%, 84.18% 73.05%, 85.42% 75.49%, 87.30% 79.98%, 89.52% 86.33%, 89.00% 89.55%, 92.19% 99.90%, 73.24% 99.90%, 74.02% 95.61%, 74.02% 94.63%, 73.05% 91.11%, 72.85% 88.18%, 71.74% 83.59%, 71.74% 83.01%, 73.11% 79.98%, 74.93% 76.95%, 75.13% 76.27%, 73.31% 69.14%, 70.77% 64.94%, 69.99% 62.21%, 69.53% 61.62%, 68.49% 57.52%, 67.51% 54.59%, 66.15% 51.76%, 66.15% 50.78%, 63.67% 45.90%, 63.09% 43.16%, 63.09% 42.58%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='miko'] .pov-hand-left {
+  clip-path: polygon(36.98% 43.36%, 35.87% 42.97%, 33.98% 45.02%, 32.42% 47.75%, 31.97% 47.75%, 30.14% 50.29%, 28.52% 51.07%, 26.76% 53.42%, 23.05% 53.81%, 22.79% 54.20%, 22.07% 57.52%, 21.29% 59.28%, 21.03% 59.57%, 20.38% 59.47%, 19.53% 59.96%, 18.10% 61.91%, 15.82% 66.60%, 13.80% 71.68%, 12.04% 74.61%, 10.35% 80.66%, 9.05% 86.62%, 7.03% 89.84%, 4.10% 99.90%, 32.88% 99.90%, 33.40% 85.94%, 33.33% 81.64%, 31.12% 73.54%, 27.28% 61.72%, 28.91% 60.06%, 30.08% 58.30%, 30.79% 58.30%, 32.62% 53.71%, 33.20% 52.73%, 33.14% 51.76%, 35.29% 48.63%, 36.85% 45.51%, 37.24% 44.43%, 37.24% 43.75%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='miko'] .pov-hand-right {
+  clip-path: polygon(63.02% 43.46%, 63.80% 43.16%, 65.30% 44.04%, 66.93% 46.19%, 67.71% 47.75%, 68.10% 47.66%, 68.95% 49.12%, 69.60% 49.71%, 69.73% 50.20%, 71.55% 51.17%, 73.37% 53.52%, 76.95% 53.81%, 77.21% 54.20%, 77.93% 57.42%, 78.71% 59.28%, 78.97% 59.57%, 80.14% 59.67%, 80.92% 60.45%, 82.23% 62.50%, 83.72% 65.62%, 86.26% 71.88%, 87.89% 74.51%, 89.52% 80.37%, 90.89% 86.62%, 92.90% 89.94%, 95.83% 99.90%, 67.19% 99.90%, 66.60% 86.62%, 66.60% 81.64%, 69.01% 72.95%, 72.79% 61.62%, 70.96% 59.86%, 69.92% 58.20%, 69.21% 58.30%, 67.84% 54.79%, 66.80% 52.73%, 66.93% 51.66%, 64.58% 48.24%, 63.61% 46.29%, 62.89% 44.43%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='gothic'] .pov-hand-left {
+  clip-path: polygon(37.70% 41.31%, 37.37% 40.92%, 34.96% 41.80%, 33.72% 43.07%, 32.23% 45.02%, 31.97% 44.92%, 30.86% 46.29%, 28.19% 47.56%, 26.43% 49.90%, 23.18% 50.00%, 22.27% 54.39%, 21.88% 55.47%, 21.03% 54.49%, 20.12% 55.08%, 19.27% 53.71%, 18.55% 53.42%, 18.36% 53.71%, 17.77% 56.74%, 16.54% 55.96%, 16.21% 56.25%, 16.02% 58.50%, 16.08% 60.06%, 15.76% 60.64%, 15.89% 61.91%, 15.76% 62.11%, 14.84% 61.91%, 13.35% 62.11%, 12.63% 62.50%, 12.24% 63.09%, 12.57% 67.29%, 13.15% 68.26%, 10.94% 70.90%, 10.68% 71.97%, 6.18% 79.69%, 6.97% 81.35%, 7.16% 82.71%, 8.01% 83.50%, 8.66% 84.67%, 7.29% 88.18%, 6.25% 91.60%, 6.25% 97.07%, 5.99% 99.90%, 29.30% 99.90%, 29.56% 99.32%, 30.08% 99.22%, 30.79% 98.54%, 30.21% 95.80%, 28.58% 90.14%, 28.91% 89.36%, 29.49% 88.87%, 29.56% 88.38%, 25.33% 72.66%, 26.11% 71.09%, 27.21% 71.09%, 27.73% 70.51%, 29.56% 70.12%, 30.47% 68.85%, 30.40% 67.87%, 30.08% 67.19%, 29.17% 66.50%, 29.69% 64.75%, 29.69% 63.67%, 29.04% 62.99%, 28.26% 62.89%, 27.93% 62.50%, 27.80% 61.13%, 26.95% 59.96%, 27.80% 57.42%, 29.62% 55.37%, 30.99% 53.22%, 31.25% 53.52%, 33.53% 49.02%, 34.11% 48.34%, 34.11% 47.66%, 36.52% 44.73%, 37.57% 42.77%, 37.83% 41.80%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='gothic'] .pov-hand-right {
+  clip-path: polygon(62.63% 40.92%, 64.26% 41.31%, 65.04% 41.80%, 67.38% 44.63%, 68.23% 45.12%, 69.08% 46.29%, 71.88% 47.66%, 73.57% 49.90%, 76.82% 50.00%, 77.73% 54.59%, 78.06% 55.27%, 78.71% 54.59%, 79.82% 55.08%, 80.66% 53.71%, 81.38% 53.42%, 81.58% 53.71%, 82.03% 56.54%, 82.16% 56.74%, 82.81% 56.15%, 83.53% 56.05%, 83.72% 56.54%, 83.85% 58.98%, 84.64% 59.86%, 85.35% 60.16%, 86.85% 62.11%, 86.98% 64.65%, 88.09% 66.21%, 88.09% 66.50%, 87.17% 67.58%, 88.80% 68.65%, 89.52% 69.82%, 88.87% 72.56%, 91.86% 76.56%, 93.75% 79.49%, 93.75% 79.98%, 92.97% 81.45%, 92.84% 82.62%, 91.86% 83.59%, 91.34% 84.77%, 93.16% 89.84%, 94.08% 94.73%, 93.82% 99.90%, 70.51% 99.90%, 70.25% 99.22%, 69.73% 99.02%, 69.08% 98.24%, 69.14% 97.17%, 71.22% 90.14%, 71.09% 89.45%, 70.51% 88.96%, 70.38% 88.57%, 70.70% 86.43%, 74.54% 72.56%, 73.76% 71.09%, 72.72% 71.09%, 72.14% 70.41%, 70.38% 70.12%, 69.73% 69.43%, 69.47% 68.65%, 69.53% 67.97%, 69.99% 67.09%, 70.83% 66.41%, 70.25% 64.75%, 70.25% 63.67%, 70.96% 62.99%, 71.81% 62.79%, 72.07% 62.40%, 72.01% 61.72%, 72.20% 60.94%, 72.98% 59.77%, 72.27% 57.62%, 70.05% 54.98%, 69.01% 53.32%, 68.68% 53.52%, 67.97% 51.76%, 67.38% 51.07%, 66.47% 49.02%, 65.89% 48.34%, 65.89% 47.66%, 63.87% 45.31%, 62.63% 43.26%, 62.17% 41.70%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='jirai'] .pov-hand-left {
+  clip-path: polygon(37.04% 43.36%, 36.46% 43.26%, 34.64% 44.53%, 33.59% 45.80%, 32.88% 47.17%, 32.42% 47.36%, 30.66% 50.98%, 28.26% 52.64%, 27.28% 54.88%, 22.46% 54.98%, 22.27% 55.27%, 22.20% 57.32%, 21.74% 60.06%, 20.57% 60.94%, 19.79% 60.06%, 18.68% 59.86%, 17.51% 61.33%, 16.34% 61.04%, 15.49% 61.82%, 14.97% 62.89%, 14.78% 63.96%, 13.80% 65.33%, 12.83% 65.53%, 12.43% 66.02%, 11.07% 69.82%, 11.07% 70.51%, 11.52% 71.68%, 10.68% 72.27%, 10.22% 73.24%, 10.22% 74.22%, 10.55% 75.88%, 9.90% 76.66%, 9.77% 77.44%, 9.96% 78.52%, 6.25% 82.71%, 8.33% 83.30%, 7.81% 87.89%, 8.46% 87.40%, 8.59% 87.70%, 6.32% 91.02%, 5.66% 92.38%, 4.88% 95.70%, 3.65% 98.54%, 3.32% 99.90%, 29.49% 99.90%, 28.84% 97.46%, 28.84% 94.53%, 28.26% 91.80%, 29.30% 90.92%, 29.82% 90.14%, 30.27% 88.87%, 30.27% 87.40%, 30.08% 86.72%, 28.84% 85.25%, 28.26% 84.18%, 28.19% 82.71%, 27.86% 81.64%, 28.26% 81.45%, 29.10% 81.93%, 29.82% 81.93%, 30.99% 81.25%, 31.51% 79.98%, 31.58% 78.03%, 33.07% 76.07%, 33.20% 75.20%, 32.68% 72.85%, 31.71% 71.29%, 30.86% 70.70%, 30.92% 69.73%, 30.21% 67.77%, 29.49% 67.09%, 28.45% 66.89%, 27.93% 65.14%, 27.28% 63.96%, 28.39% 61.52%, 29.56% 60.35%, 30.86% 58.20%, 31.38% 58.50%, 32.10% 57.23%, 32.10% 55.66%, 32.55% 54.69%, 33.07% 55.08%, 33.85% 52.93%, 33.72% 51.86%, 35.74% 48.54%, 37.37% 44.82%, 37.37% 43.95%);
+}
+:is(.table-view, .hand-style-preview)[data-hand-style='jirai'] .pov-hand-right {
+  clip-path: polygon(62.89% 43.36%, 63.41% 43.26%, 64.97% 44.34%, 65.43% 44.34%, 66.54% 45.70%, 66.54% 46.09%, 66.99% 46.88%, 67.51% 47.27%, 69.66% 51.37%, 70.05% 51.37%, 71.68% 52.64%, 72.72% 54.88%, 77.47% 54.98%, 77.86% 58.59%, 78.26% 60.16%, 78.52% 60.16%, 79.36% 61.04%, 80.14% 60.06%, 81.05% 59.77%, 81.58% 60.06%, 82.49% 61.33%, 82.88% 61.04%, 83.72% 61.13%, 84.18% 61.43%, 84.83% 62.50%, 85.16% 63.87%, 86.13% 65.33%, 87.11% 65.53%, 87.50% 66.02%, 88.35% 68.07%, 88.87% 70.02%, 88.80% 70.70%, 88.35% 71.68%, 89.13% 72.17%, 89.71% 73.24%, 89.65% 74.71%, 89.32% 75.78%, 89.97% 76.56%, 90.17% 77.25%, 90.04% 78.52%, 93.62% 82.62%, 93.55% 82.91%, 92.06% 83.01%, 91.60% 83.30%, 92.12% 87.89%, 91.41% 87.40%, 91.28% 87.60%, 93.10% 90.23%, 94.34% 92.58%, 95.12% 96.09%, 96.35% 98.73%, 96.61% 99.90%, 70.38% 99.90%, 71.03% 97.46%, 71.03% 94.63%, 71.61% 91.70%, 70.05% 90.04%, 69.66% 88.77%, 69.66% 87.30%, 69.86% 86.62%, 71.68% 84.18%, 71.74% 82.71%, 72.07% 81.54%, 71.88% 81.35%, 70.77% 81.93%, 70.25% 81.93%, 68.95% 81.25%, 68.42% 79.88%, 68.36% 77.93%, 66.80% 75.98%, 66.73% 75.20%, 67.25% 72.95%, 67.64% 72.07%, 69.01% 70.70%, 69.01% 69.63%, 69.34% 68.46%, 70.31% 67.19%, 71.55% 66.80%, 72.01% 65.04%, 72.59% 63.87%, 71.35% 61.33%, 70.12% 60.06%, 69.08% 58.30%, 68.55% 58.40%, 67.77% 56.93%, 67.77% 55.57%, 67.32% 54.69%, 66.99% 55.08%, 66.08% 53.12%, 66.15% 51.76%, 64.39% 48.93%, 62.83% 45.61%, 62.57% 44.73%, 62.57% 43.95%);
+}
+
+/* These three textures run the forearms off the lower corners, so each hand turns about its thumb tip
+   until the sleeve leaves through the bottom edge, as in the original four, instead of being cut at the
+   side. Both layers of a hand share the origin and angle, so they stay aligned. */
+:is(.table-view, .hand-style-preview)[data-hand-style='detective'] :is(.pov-hand-back-left, .pov-hand-left) { transform-origin: 45.25% 35.74%; rotate: -10deg; }
+:is(.table-view, .hand-style-preview)[data-hand-style='detective'] :is(.pov-hand-back-right, .pov-hand-right) { transform-origin: 54.75% 35.74%; rotate: 10deg; }
+:is(.table-view, .hand-style-preview)[data-hand-style='diviner'] :is(.pov-hand-back-left, .pov-hand-left) { transform-origin: 38.41% 36.04%; rotate: -17deg; }
+:is(.table-view, .hand-style-preview)[data-hand-style='diviner'] :is(.pov-hand-back-right, .pov-hand-right) { transform-origin: 61.59% 36.04%; rotate: 17deg; }
+:is(.table-view, .hand-style-preview)[data-hand-style='hacker'] :is(.pov-hand-back-left, .pov-hand-left) { transform-origin: 45.57% 41.02%; rotate: -8deg; }
+:is(.table-view, .hand-style-preview)[data-hand-style='hacker'] :is(.pov-hand-back-right, .pov-hand-right) { transform-origin: 54.43% 41.02%; rotate: 8deg; }
+
+/* Raise the cards so the card suit sits above the thumbnail while the index finger still wraps the edge. */
+.table-view:is([data-hand-style='detective'], [data-hand-style='diviner'], [data-hand-style='verdict'], [data-hand-style='miko'],
+  [data-hand-style='gothic'], [data-hand-style='jirai']) .seat.mine .seat-cards > :is(.seat-card-wrap, .seat-card-target) {
+  translate: 0 -18px;
+}
+.hand-style-preview:is([data-hand-style='detective'], [data-hand-style='diviner'], [data-hand-style='verdict'], [data-hand-style='miko'],
+  [data-hand-style='gothic'], [data-hand-style='jirai']) .hand-style-preview-cards {
+  top: 7px;
+}
+
+.seat.mine.holding-cards .seat-card-wrap { width: 92px; height: 130px; }
+.seat.mine .seat-cards > .seat-card-wrap:first-child,
+.seat.mine .seat-cards > .seat-card-target:first-child { transform: rotate(-7deg); }
+.seat.mine .seat-cards > .seat-card-wrap:nth-child(2),
+.seat.mine .seat-cards > .seat-card-target:nth-child(2) { transform: rotate(7deg); }
+.seat.mine .seat-cards > .seat-card-wrap,
+.seat.mine .seat-cards > .seat-card-target { transition: transform 180ms ease-out; }
+.seat.mine .seat-cards > .seat-card-wrap { z-index: 2; }
+.seat.mine .seat-card-target { position: relative; z-index: 3; }
+.seat.mine .seat-cards > .seat-card-wrap:first-child:active,
+.seat.mine .seat-card-target:first-child:is(:hover, :focus-visible, .chosen) { transform: translateY(-6px) rotate(-7deg); }
+.seat.mine .seat-cards > .seat-card-wrap:nth-child(2):active,
+.seat.mine .seat-card-target:nth-child(2):is(:hover, :focus-visible, .chosen) { transform: translateY(-6px) rotate(7deg); }
+@media (hover: hover) {
+  .seat.mine .seat-cards > .seat-card-wrap:first-child:hover { transform: translateY(-4px) rotate(-7deg); }
+  .seat.mine .seat-cards > .seat-card-wrap:nth-child(2):hover { transform: translateY(-4px) rotate(7deg); }
+}
+.seat.mine .card.card-pov-deal:not(.card-revealed) {
+  animation: povDeal 1.15s cubic-bezier(.2,.75,.25,1) backwards;
+}
+.seat.mine .seat-card-target .card.card-pov-deal { animation: none; }
+
+@keyframes povDeal {
+  0% { opacity: 0; transform: translate(calc(0px - clamp(100px, 20vw, 240px)), calc(0px - clamp(100px, 20vh, 190px))) rotateY(150deg) rotate(-28deg) scale(.58); }
+  68% { opacity: 1; transform: translate(0, -12px) rotateY(0) rotate(3deg) scale(1.04); }
+  84% { transform: translate(0, 5px) rotate(-2deg) scale(.98); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes povCatch {
+  0% { opacity: 0; transform: translateY(90px) scale(.96); }
+  62% { opacity: 1; transform: translateY(10px); }
+  80% { transform: translateY(-5px); }
+  100% { transform: none; }
+}
+@keyframes povIdle {
+  0%, 100% { transform: translateY(1px) rotate(-.2deg); }
+  50% { transform: translateY(4px) rotate(.2deg); }
+}
+
+.seat.mine .seat-info {
+  position: absolute;
+  z-index: 5;
+  bottom: 14px;
+  left: 50%;
+  width: max-content;
+  min-width: 158px;
+  max-width: min(240px, 62vw);
+  padding: 5px 12px;
+  transform: translateX(-50%);
+}
+.seat.mine.acting .seat-info { transform: translateX(-50%) scale(1.04) rotate(-2deg); }
+.seat.mine .seat-name { justify-content: center; }
+.seat.mine .seat-bet { position: absolute; z-index: 5; bottom: 80px; left: 50%; transform: translateX(-50%); }
+.seat.mine .blind-chip { top: auto; bottom: 35px; left: calc(50% - 112px); }
+.seat.mine .dealer-chip { top: auto; right: calc(50% - 112px); bottom: 35px; }
+.seat.mine .seat-peek-btn {
+  position: absolute;
+  z-index: 6;
+  right: 4px;
+  bottom: 85px;
+  width: 80px;
+  min-height: 36px;
+}
+.seat.mine .seat-peek-hint { display: none; }
+
+.table-tools .table-trick-btn {
+  color: #181513;
+  background: var(--accent);
+  font-weight: 800;
+}
+.table-tools .table-trick-btn:hover,
+.table-tools .table-trick-btn:focus-visible {
+  color: #181513;
+  background: color-mix(in srgb, var(--accent) 80%, white);
+}
+.table-tools .table-trick-btn:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+
+.hand-style-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.hand-style-option {
+  display: grid;
+  gap: 9px;
+  padding: 8px;
+  border: 2px solid #fff;
+  color: #fff;
+  background: var(--comic-surface);
+  font-weight: 800;
+  cursor: pointer;
+}
+.hand-style-option.active { border-color: var(--comic-hot); box-shadow: 4px 4px 0 var(--comic-hot); }
+.hand-style-option:focus-visible { outline: 3px solid var(--comic-hot); outline-offset: 3px; }
+.hand-style-preview {
+  position: relative;
+  display: block;
+  height: 110px;
+  overflow: hidden;
+  background: url('/textures/comic-table.svg') center / cover;
+}
+.hand-style-preview-cards { position: absolute; z-index: 2; top: 13px; left: 50%; display: flex; gap: 0; transform: translateX(-50%); }
+.hand-style-preview-cards i {
+  display: block;
+  width: 31px;
+  height: 47px;
+  padding: 3px;
+  border: 2px solid #171717;
+  color: #171717;
+  background: #fff5df;
+  font: 800 14px/1 sans-serif;
+  text-align: left;
+}
+.hand-style-preview-cards i + i { color: #b82932; }
+
+@media (orientation: landscape) {
+  /* The hand ends just left of the centre line and the dock (fit.css) starts just right of it.
+     Keep these offsets a plain calc(50% ± px): on iPhone (WeChat, Safari) the page zoom is applied
+     twice to px inside a min() of px and %, so offsets built from the widths below drift inward. */
+  .table-view {
+    --pov-width: min(420px, calc(50% - 24px));
+    --dock-width: min(300px, calc(50% - 24px));
+  }
+  .table-view > .seat.mine {
+    right: calc(50% + 9px);
+    left: auto;
+    width: var(--pov-width);
+    transform: none;
+  }
+  .table-view:has(> .seat.mine.holding-cards) > .action-bar {
+    padding: 10px;
+    gap: 6px;
+  }
+  .table-view > .action-bar .action-heading strong { font-size: 16px; }
+  .table-view > .action-bar .timer-count { font-size: 18px; }
+  .table-view > .action-bar .action-buttons > button { min-height: 44px; padding: 6px 4px; font-size: 15px; }
+  .table-view:has(> .seat.mine.holding-cards) .community { top: 42%; }
+  .table-view:has(> .seat.mine.holding-cards) .pot { top: 52%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion='on']) .table-view > .seat.mine.holding-cards .seat-cards,
+  :root:not([data-motion='on']) .seat.mine .card.card-pov-deal,
+  :root:not([data-motion='on']) .seat.mine .pov-hand-art { animation: none; }
+  :root:not([data-motion='on']) .seat.mine .seat-cards > .seat-card-wrap,
+  :root:not([data-motion='on']) .seat.mine .seat-card-target { transition: none; }
+}
+:root[data-motion='off'] .table-view > .seat.mine.holding-cards .seat-cards,
+:root[data-motion='off'] .seat.mine .card.card-pov-deal,
+:root[data-motion='off'] .seat.mine .pov-hand-art { animation: none; }
+:root[data-motion='off'] .seat.mine .seat-cards > .seat-card-wrap,
+:root[data-motion='off'] .seat.mine .seat-card-target { transition: none; }

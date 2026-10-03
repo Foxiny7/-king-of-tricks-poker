@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 250">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0f3a2c"/><stop offset="1" stop-color="#07170f"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f7df98"/><stop offset=".5" stop-color="#d6a64e"/><stop offset="1" stop-color="#a2742c"/></linearGradient>
+    <clipPath id="inner"><rect x="17" y="17" width="146" height="216" rx="6"/></clipPath>
+  </defs>
+  <rect width="180" height="250" rx="15" fill="url(#bg)"/>
+  <g clip-path="url(#inner)" fill="#d6a64e">
+    <g opacity=".3">
+      <path d="M90 236 20 20h14z"/><path d="M90 236 48 20h14z"/><path d="M90 236 76 20h14z"/>
+      <path d="M90 236 104 20h14z"/><path d="M90 236 132 20h14z"/><path d="M90 236 160 20h14z"/>
+      <path d="M90 236 17 70v14z"/><path d="M90 236 163 70v14z"/><path d="M90 236 17 130v14z"/><path d="M90 236 163 130v14z"/>
+    </g>
+  </g>
+  <g fill="none" stroke="url(#gold)" stroke-linejoin="round">
+    <path d="M38 236V112l52-58 52 58v124" stroke-width="4"/>
+    <path d="M50 236V118l40-45 40 45v118" stroke-width="2" stroke-opacity=".8"/>
+    <path d="M62 236V124l28-31 28 31v112" stroke-width="1.2" stroke-opacity=".5"/>
+  </g>
+  <path d="M90 88l31 37-31 37-31-37z" fill="#0b271d" stroke="url(#gold)" stroke-width="3.5"/>
+  <path d="M90 102l19 23-19 23-19-23z" fill="url(#gold)"/>
+  <circle cx="90" cy="125" r="4" fill="#0b271d"/>
+  <g fill="url(#gold)">
+    <path d="M90 30l5 8h-10zM82 42h16l-8 6z"/>
+    <rect x="24" y="24" width="18" height="3"/><rect x="24" y="24" width="3" height="18"/>
+    <rect x="138" y="24" width="18" height="3"/><rect x="153" y="24" width="3" height="18"/>
+  </g>
+  <rect x="9" y="9" width="162" height="232" rx="9" fill="none" stroke="url(#gold)" stroke-width="3.5"/>
+  <rect x="17" y="17" width="146" height="216" rx="6" fill="none" stroke="#d6a64e" stroke-opacity=".5" stroke-width="1.2"/>
+</svg>

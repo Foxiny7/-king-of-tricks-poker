@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#2f5a42"/><stop offset="1" stop-color="#16301f"/></linearGradient>
+    <linearGradient id="stalk" x2="1"><stop stop-color="#2f6b40"/><stop offset=".45" stop-color="#6aa565"/><stop offset="1" stop-color="#2a5b39"/></linearGradient>
+    <path id="leaf" d="M0 0c10-4 24-4 32 0-8 5-22 5-32 0z"/></defs>
+
+  <rect width="300" height="100" fill="url(#bg)"/>
+  <g fill="url(#stalk)"><rect x="36" y="0" width="9" height="100" rx="4"/><rect x="96" y="0" width="7" height="100" rx="3"/><rect x="196" y="0" width="7" height="100" rx="3"/><rect x="256" y="0" width="9" height="100" rx="4"/></g>
+  <g fill="#123322"><rect x="34" y="30" width="13" height="2.5"/><rect x="34" y="72" width="13" height="2.5"/><rect x="94" y="48" width="11" height="2.5"/><rect x="194" y="22" width="11" height="2.5"/><rect x="194" y="66" width="11" height="2.5"/><rect x="254" y="40" width="13" height="2.5"/></g>
+  <g fill="#1f4e31"><use href="#leaf" transform="translate(45 32) rotate(-20)"/><use href="#leaf" transform="translate(45 34) rotate(8) scale(.85)"/><use href="#leaf" transform="translate(103 50) rotate(-10) scale(.9)"/><use href="#leaf" transform="translate(194 24) rotate(200) scale(.9)"/><use href="#leaf" transform="translate(254 42) rotate(196)"/><use href="#leaf" transform="translate(254 44) rotate(170) scale(.85)"/></g>
+</svg>

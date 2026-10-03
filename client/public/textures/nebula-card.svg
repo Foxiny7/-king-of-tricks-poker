@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 250">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b0d2a"/><stop offset=".55" stop-color="#1c1245"/><stop offset="1" stop-color="#0a1330"/></linearGradient>
+    <radialGradient id="n1"><stop stop-color="#9a5cf0" stop-opacity=".85"/><stop offset="1" stop-color="#9a5cf0" stop-opacity="0"/></radialGradient>
+    <radialGradient id="n2"><stop stop-color="#e05fb4" stop-opacity=".7"/><stop offset="1" stop-color="#e05fb4" stop-opacity="0"/></radialGradient>
+    <radialGradient id="n3"><stop stop-color="#44c3e0" stop-opacity=".6"/><stop offset="1" stop-color="#44c3e0" stop-opacity="0"/></radialGradient>
+    <radialGradient id="planet" cx=".35" cy=".3" r=".8"><stop stop-color="#ffe2b0"/><stop offset=".5" stop-color="#e59a6c"/><stop offset="1" stop-color="#5b2f5e"/></radialGradient>
+    <clipPath id="inner"><rect x="9" y="9" width="162" height="232" rx="9"/></clipPath>
+    <path id="spark" d="M0-7C1-2 2-1 7 0 2 1 1 2 0 7-1 2-2 1-7 0-2-1-1-2 0-7z"/>
+  </defs>
+  <rect width="180" height="250" rx="15" fill="url(#bg)"/>
+  <g clip-path="url(#inner)">
+    <ellipse cx="70" cy="95" rx="70" ry="52" fill="url(#n1)" transform="rotate(-25 70 95)"/>
+    <ellipse cx="118" cy="150" rx="62" ry="44" fill="url(#n2)" transform="rotate(20 118 150)"/>
+    <ellipse cx="80" cy="185" rx="58" ry="34" fill="url(#n3)"/>
+    <ellipse cx="96" cy="118" rx="34" ry="22" fill="#f4d6ff" opacity=".18" transform="rotate(-25 96 118)"/>
+    <g fill="#fff">
+      <circle cx="30" cy="40" r="1.1"/><circle cx="52" cy="62" r=".8"/><circle cx="150" cy="38" r="1.2"/><circle cx="138" cy="70" r=".8"/>
+      <circle cx="24" cy="120" r=".9"/><circle cx="160" cy="112" r="1"/><circle cx="36" cy="170" r="1.1"/><circle cx="150" cy="196" r=".9"/>
+      <circle cx="62" cy="222" r="1"/><circle cx="120" cy="228" r=".8"/><circle cx="106" cy="30" r=".8"/><circle cx="84" cy="150" r=".7"/>
+      <circle cx="44" cy="92" r=".7"/><circle cx="128" cy="100" r=".7"/><circle cx="98" cy="206" r=".9"/><circle cx="20" cy="210" r=".8"/>
+    </g>
+    <g fill="#fff6e0"><use href="#spark" transform="translate(40 58) scale(.9)"/><use href="#spark" transform="translate(146 170) scale(.75)"/><use href="#spark" transform="translate(58 204) scale(.6)"/></g>
+    <ellipse cx="112" cy="94" rx="40" ry="10" fill="none" stroke="#f5d7a8" stroke-opacity=".45" stroke-width="3" transform="rotate(-18 112 94)"/>
+    <circle cx="112" cy="94" r="22" fill="url(#planet)"/>
+    <path d="M74 106a40 10-18 0 0 76-24" fill="none" stroke="#f9e3bb" stroke-width="3.2" transform="rotate(0)"/>
+  </g>
+  <rect x="9" y="9" width="162" height="232" rx="9" fill="none" stroke="#c9b2ff" stroke-width="3.5"/>
+  <rect x="17" y="17" width="146" height="216" rx="6" fill="none" stroke="#c9b2ff" stroke-opacity=".4" stroke-width="1.2"/>
+</svg>

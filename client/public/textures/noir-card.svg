@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 250">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#1b1e25"/><stop offset="1" stop-color="#08090c"/></linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff" stop-opacity=".32"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fbfcfe"/><stop offset=".5" stop-color="#b9c1cd"/><stop offset="1" stop-color="#6e7684"/></linearGradient>
+    <clipPath id="inner"><rect x="9" y="9" width="162" height="232" rx="9"/></clipPath>
+    <clipPath id="left"><rect x="0" y="0" width="90" height="250"/></clipPath>
+    <path id="spade" d="M0-22C7-11 24-3 18 10 14 19 5 17 2 12c1 7 4 11 9 13H-11c5-2 8-6 9-13-3 5-12 7-16-2-6-13 11-21 18-32z"/>
+  </defs>
+  <rect width="180" height="250" rx="15" fill="url(#bg)"/>
+  <g clip-path="url(#inner)">
+    <path d="M70 0h40l52 250H18z" fill="url(#beam)"/>
+    <g stroke="#d7dde7" stroke-opacity=".16" stroke-width="1.2">
+      <path d="M9 40h162M9 46h162M9 52h162M9 198h162M9 204h162M9 210h162"/>
+    </g>
+    <ellipse cx="90" cy="186" rx="44" ry="7" fill="#000" opacity=".5"/>
+  </g>
+  <use href="#spade" transform="translate(90 125) scale(2.3)" fill="#7a8392"/>
+  <use href="#spade" transform="translate(90 125) scale(2.3)" fill="url(#silver)" clip-path="url(#left)"/>
+  <path d="M90 74v100" stroke="#fff" stroke-opacity=".25" stroke-width="1"/>
+  <g fill="none" stroke="url(#silver)" stroke-width="2.2">
+    <path d="M24 34V24h10M156 34V24h-10M24 216v10h10M156 216v10h-10"/>
+  </g>
+  <rect x="9" y="9" width="162" height="232" rx="9" fill="none" stroke="url(#silver)" stroke-width="3.5"/>
+  <rect x="17" y="17" width="146" height="216" rx="6" fill="none" stroke="#d7dde7" stroke-opacity=".35" stroke-width="1.2"/>
+</svg>

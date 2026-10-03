@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#2f78a8"/><stop offset="1" stop-color="#0f2c4c"/></linearGradient>
+    <linearGradient id="ice" x2="0" y2="1"><stop stop-color="#f3fbff"/><stop offset=".6" stop-color="#bfe6fa" stop-opacity=".9"/><stop offset="1" stop-color="#9fd6f4" stop-opacity=".25"/></linearGradient>
+    <filter id="rime" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".035 .08" numOctaves="4" seed="5"/><feColorMatrix values="0 0 0 0 .9  0 0 0 0 .97  0 0 0 0 1  0 0 0 1.5 -.7"/></filter>
+    <path id="arm" d="M0-12V12M-3.5-8.5 0-5 3.5-8.5M-3.5 8.5 0 5 3.5 8.5"/>
+    <g id="flake" stroke="#eaf8ff" stroke-width="1.8" stroke-linecap="round" fill="none"><use href="#arm"/><use href="#arm" transform="rotate(60)"/><use href="#arm" transform="rotate(120)"/></g></defs>
+
+  <rect width="300" height="100" fill="url(#bg)"/>
+  <rect width="300" height="100" filter="url(#rime)" opacity=".35"/>
+  <path d="M0 0H300V8L295.5 24.3L291.1 8L285.4 27.1L279.6 8L275.9 23.8L272.2 8L268.5 18.9L264.7 8L259.0 27.0L253.3 8L247.4 21.6L241.5 8L235.9 25.1L230.3 8L223.1 20.1L215.9 8L211.1 20.0L206.4 8L200.5 15.2L194.7 8L190.1 18.8L185.4 8L181.6 17.2L177.8 8L172.3 14.2L166.9 8L161.9 18.1L156.9 8L150.6 17.6L144.3 8L138.1 17.9L131.8 8L127.4 18.8L123.0 8L117.2 15.9L111.3 8L107.7 16.8L104.1 8L98.3 14.9L92.5 8L88.4 17.9L84.3 8L77.4 14.7L70.6 8L65.1 16.6L59.6 8L53.4 20.4L47.1 8L41.7 28.9L36.2 8L29.1 23.6L22.0 8L18.1 23.2L14.2 8L9.8 18.1L5.5 8L0.9 25.8L0.0 8Z" fill="url(#ice)"/>
+  <path d="M0 100H300V95C250 91 210 97 150 94S50 90 0 96Z" fill="#e8f6ff" opacity=".6"/>
+  <g opacity=".85"><use href="#flake" transform="translate(42 58) scale(1.05)"/><use href="#flake" transform="translate(258 60) scale(1.15)"/></g>
+  <g opacity=".5"><use href="#flake" transform="translate(88 70) scale(.55)"/><use href="#flake" transform="translate(214 74) scale(.5)"/><use href="#flake" transform="translate(150 80) scale(.4)"/><use href="#flake" transform="translate(20 84) scale(.4)"/><use href="#flake" transform="translate(284 86) scale(.4)"/></g>
+</svg>

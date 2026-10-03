@@ -1,0 +1,14 @@
+**/node_modules/
+**/dist/
+**/.playwright-cli/
+**/.env*
+*.local
+*.log
+
+server/data/
+output/
+
+# Local collaboration and deployment notes.
+AI_HANDOFF.md
+CODEX_PROJECT_PROMPT.md
+CODEX_POV_PROMPT.md

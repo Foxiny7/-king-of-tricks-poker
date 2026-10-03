@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#30261a"/><stop offset=".5" stop-color="#161109"/><stop offset="1" stop-color="#2a2014"/></linearGradient>
+    <linearGradient id="gold" x2="0" y2="1"><stop stop-color="#fbe3a0"/><stop offset=".5" stop-color="#d9ab55"/><stop offset="1" stop-color="#9c7433"/></linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2=".35"><stop offset=".25" stop-color="#ffe7a8" stop-opacity="0"/><stop offset=".45" stop-color="#ffe7a8" stop-opacity=".16"/><stop offset=".55" stop-color="#ffe7a8" stop-opacity=".05"/><stop offset=".7" stop-color="#ffe7a8" stop-opacity="0"/></linearGradient>
+    <pattern id="lattice" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H14M0 0V14" stroke="#d9b060" stroke-opacity=".13"/></pattern>
+    <g id="corner"><path d="M4 30V10q0-6 6-6h20" fill="none" stroke="url(#gold)" stroke-width="2"/><path d="M10 24V14q0-4 4-4h10" fill="none" stroke="url(#gold)" stroke-width="1"/><path d="M36 4l3-3 3 3-3 3z" fill="url(#gold)"/><path d="M4 36l-3 3 3 3 3-3z" fill="url(#gold)"/></g></defs>
+
+  <rect width="300" height="100" fill="url(#bg)"/><rect width="300" height="100" fill="url(#lattice)"/>
+  <rect width="300" height="100" fill="url(#sheen)"/>
+  <g fill="none" stroke="url(#gold)"><rect x="3.5" y="3.5" width="293" height="93" rx="4" stroke-width="1.6"/><rect x="8.5" y="8.5" width="283" height="83" rx="2" stroke-width=".7" opacity=".7"/></g>
+  <use href="#corner" x="4" y="4"/><use href="#corner" transform="translate(296 4) scale(-1 1)"/><use href="#corner" transform="translate(4 96) scale(1 -1)"/><use href="#corner" transform="translate(296 96) scale(-1 -1)"/>
+  <g fill="url(#gold)"><path d="M150 4l5 4.5-5 4.5-5-4.5zM150 87l5 4.5-5 4.5-5-4.5z"/><rect x="100" y="7.6" width="36" height="1.6"/><rect x="164" y="7.6" width="36" height="1.6"/><rect x="100" y="90.8" width="36" height="1.6"/><rect x="164" y="90.8" width="36" height="1.6"/></g>
+</svg>
