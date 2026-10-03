@@ -1,82 +1,62 @@
-# 千王之王2026
+# 千王之王2026 · King of Tricks Poker
 
-给中美两地的朋友凑一桌用的网页德州扑克，2~10 人，纯记分不涉及真钱。房主开房、设初始筹码和规则，大家用浏览器打开链接就能玩，不用装 App。
+A browser-based Texas Hold'em game for 2–10 friends in China and the US. Play with chips for fun—there is **no real-money gambling**, account registration, or app installation.
 
-现在能玩什么：
+**[Play the game](https://47.76.108.238.sslip.io/)** · The interface supports **English and 中文**. New visitors start in English; existing players keep Chinese unless they change it. Language choices are saved on each device. On phones, rotate to landscape.
 
-- 标准德扑流程，边池/短牌全下都算对
-- 房主能调的规则：加注规则（不限次数 / 每轮每人限一次）、单次加注上限、单轮下注上限，盲注是固定几档（10/20 到 500/1000），不会因为改筹码数就跟着变
-- 全下会自动按"我的筹码"和"场上其他人筹码"里更小的算，不会出现全下一堆没人接得住的情况；有人全下之后这一轮其他人就只能跟注了
-- 断线重连：换设备也行，同一房间码 + 同一个名字就能接回原来的位置
-- 房主能踢人、能给出局的人补筹码让他们下一局回来打
-- 摊牌后可以花 20 筹码看某个弃牌玩家的手牌，弃牌的人自己也能选择主动亮牌
-- 每局结束不会自动开下一局，要大家都点"继续"才开始（45 秒没点齐会自动跳过，免得卡住）
-- 房间战绩会记着这一路打了几局、每局谁赢了多少
-- 语音聊天（WebRTC，P2P + TURN 中继兜底），还有个简单的表情/送礼物功能活跃气氛
-- 首页可以换皮肤：3 种卡牌样式（经典文字/精致插画/极简暗色）+ 4 种牌桌颜色（绿/红/蓝/紫），选择存在本地，各人独立
+## Game modes
 
-## 本地跑起来
+- **Classic Hold'em:** betting rounds, all-ins, side pots, showdown, and room results. The host can play without a hand limit or set 2–99 hands.
+- **Trick Mode (千术模式):** a 16-hand match in four phases. Pick from **109 tricks** that reveal information, change cards, protect your hand, or disrupt opponents. Trick choices and uses are enforced by the server.
 
-`server/` 和 `client/` 各自 `npm install` 一次。
+## Around the table
 
-```bash
-# 终端 1：后端，默认 3001
-cd server
-npm run dev
+- Create a room or join by code. The host chooses starting chips, blinds, raise limits, and game mode. Disconnected players can rejoin their seat.
+- Add server-controlled practice bots, chat with the room, send reactions and gifts, or use WebRTC voice chat with optional TURN relay.
+- Keep a profile, add friends, see who is online, and review completed matches.
+- Customize the game from **Collections**: 23 card themes, 23 table themes, and 11 first-person hand styles. The default look uses bold comic artwork.
+- Change interface language, sound, speech, and motion settings independently. Japanese announcements use bundled VOICEVOX clips; Chinese and English announcements use browser speech.
 
-# 终端 2：前端，默认 5173，带热更新
-cd client
-npm run dev
-```
+## Run locally
 
-打开 `http://localhost:5173`。开发模式下前端请求打到 `http://localhost:3001`。
-
-## 部署
+Install Node.js and npm. From the repository root:
 
 ```bash
-cd client
-npm run build          # 出 client/dist
-
-cd ../server
-npm install --omit=dev
-PORT=3001 node src/index.js
+npm --prefix client ci
+npm --prefix server ci
+npm --prefix client run build
 ```
 
-`server/src/index.js` 直接把 `client/dist` 当静态资源托管，线上只需要跑这一个 Node 进程，不用单独部署前端。
+The Node server serves the built client from `client/dist`. To keep local play data separate from any existing installation, set temporary profile and friend files before starting it.
 
-**语音功能要求 HTTPS**（浏览器麦克风权限的硬性限制），纯 IP 访问是拿不到麦克风的。没有域名的话可以用 [sslip.io](https://sslip.io) 这种免费通配符 DNS（比如 `你的IP.sslip.io`）配合 Caddy 自动签 Let's Encrypt 证书，不用自己折腾 nginx + certbot：
+PowerShell:
 
+```powershell
+$env:PORT = '3002'
+$env:PROFILE_FILE = Join-Path $env:TEMP 'king-of-tricks-profiles.json'
+$env:FRIEND_FILE = Join-Path $env:TEMP 'king-of-tricks-friends.json'
+npm --prefix server start
 ```
-# /etc/caddy/Caddyfile
-你的IP.sslip.io {
-    reverse_proxy localhost:3001
-}
-```
 
-语音跨 NAT 打洞如果失败需要 TURN 中继兜底，装个 coturn，然后启动 server 时把这几个环境变量带上：
+macOS / Linux:
 
 ```bash
-TURN_HOST=你的IP TURN_USERNAME=xxx TURN_PASSWORD=xxx node src/index.js
+PORT=3002 PROFILE_FILE=/tmp/king-of-tricks-profiles.json FRIEND_FILE=/tmp/king-of-tricks-friends.json npm --prefix server start
 ```
 
-`/ice-servers` 接口会把这些拼成前端要用的 ICE server 列表。
+Open **http://localhost:3002**. The server provides both the web app and Socket.IO on the same origin. Browser microphone access requires HTTPS outside localhost. Player data lives in the files named by `PROFILE_FILE` and `FRIEND_FILE`; `server/data/` is excluded from Git.
 
-服务器选址：新加坡或东京的小 VPS 对中美双边访问都还算稳，也不用大陆的 ICP 备案。
+## Project layout
 
-## 目录结构
+- `client/` — React 19, Vite, game UI, localization, themes, and bundled media.
+- `server/src/` — Express, Socket.IO, room and game rules, tricks, profiles, and friends.
+- `server/test/` — Node test suite.
 
-- `server/src/gameEngine.js` — 游戏规则核心：发牌、下注轮、边池、全下上限、摊牌判定
-- `server/src/room.js` / `roomManager.js` — 房间和玩家状态
-- `server/src/socketHandlers.js` — 所有 Socket.io 事件，房间状态广播、语音信令转发、表情/礼物转发
-- `client/src/components/` — 各个界面（大厅、牌桌、语音、表情等）
-- `client/public/icons` / `sounds` / `textures` — 素材文件（见下方素材来源）
+## Asset credits
 
-## 素材来源
+Assets are bundled locally rather than fetched from a third-party CDN during play.
 
-界面用到的图片/音效都是免费可商用授权的素材，本地打包进项目，不依赖外部 CDN：
-
-- 表情/礼物图标：[Twemoji](https://github.com/twitter/twemoji)（CC-BY 4.0，图形版权 © Twitter, Inc 及其他贡献者）
-- 胜负音效：[Kenney Interface Sounds](https://kenney.nl/assets/interface-sounds)（CC0）
-- 背景纹理：[ambientCG Fabric022](https://ambientcg.com/view?id=Fabric022)（CC0，改过色调）
-
-扑克牌面还是用文字+符号现场渲染（`client/src/components/Card.jsx`），没有用图片素材。
+- Emoji and gift icons: [Twemoji](https://github.com/twitter/twemoji), graphics © Twitter, Inc. and contributors, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Interface sounds: [Kenney Interface Sounds](https://kenney.nl/assets/interface-sounds), CC0.
+- Tinted fabric background: [ambientCG Fabric022](https://ambientcg.com/view?id=Fabric022), CC0.
+- Japanese announcement clips: [VOICEVOX](https://voicevox.hiroshiba.jp/) — VOICEVOX:冥鳴ひまり, VOICEVOX:波音リツ, VOICEVOX:九州そら, VOICEVOX:四国めたん, VOICEVOX:No.7, VOICEVOX:ぞん子, VOICEVOX:春日部つむぎ, VOICEVOX:ずんだもん. See the [VOICEVOX terms](https://voicevox.hiroshiba.jp/term/) and each character's terms.
